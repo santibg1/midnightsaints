@@ -1,0 +1,628 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="Tenis y ropa 100% originales comprados en Nueva York. Envíos a toda Colombia."><link rel="icon" href="img/logo.png"><style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>Midnight Saints Tienda</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: tienda nocturna — barra de anuncio, cabecera fija, portada, categorías, carrusel, catálogo en cuadrícula, pedido por DM */
+:root{
+  --ink:#0b0b0d;        /* fondo */
+  --panel:#151519;      /* tarjetas */
+  --line:#26262c;       /* bordes */
+  --silver:#d3d6dc;     /* texto principal, plateado del logo */
+  --muted:#8a8e98;      /* texto secundario */
+  --red:#d62026;        /* rojo de la marca */
+  --font-display:"Anton","Impact","Arial Narrow",sans-serif;
+  --font-body:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--silver);font-family:var(--font-body);font-size:15px;line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--ink)}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:.02em;text-transform:uppercase;margin:0;text-wrap:balance;color:#f2f3f5}
+h2{font-size:clamp(28px,5vw,44px);line-height:1}
+.price{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+
+/* anuncio */
+.announce{background:var(--red);color:#fff;font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;overflow:hidden;white-space:nowrap}
+.announce .track{display:inline-flex;gap:48px;padding-block:8px;animation:scroll 28s linear infinite}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* cabecera */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(11,11,13,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:10px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand img{width:40px;height:40px;border-radius:50%}
+.brand span{font-family:var(--font-display);font-size:22px;letter-spacing:.06em;color:#f2f3f5}
+nav{display:flex;gap:20px}
+nav a{text-decoration:none;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+nav a:hover{color:#fff}
+.cart-btn{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:8px 14px;font-size:13px;font-weight:600}
+.cart-btn b{background:var(--red);color:#fff;border-radius:999px;min-width:22px;height:22px;display:inline-grid;place-items:center;font-size:12px}
+@media (max-width:720px){nav{display:none}}
+
+/* portada */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;filter:saturate(1.05)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,11,13,.92) 0%,rgba(11,11,13,.55) 55%,rgba(11,11,13,.15) 100%)}
+.hero .wrap{position:relative;z-index:1;padding-block:clamp(56px,10vw,120px);display:grid;gap:18px;max-width:1200px}
+.hero h1{font-size:clamp(46px,9vw,104px);line-height:.92;max-width:12ch}
+.perks{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.perks li{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(6px);color:#fff;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:600}
+.hero .hot{margin:0;color:#ffd28a;font-weight:700;font-size:15px}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero p{max-width:44ch;color:#c4c7ce;font-size:17px;margin:0}
+.route{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:6px 12px;width:fit-content}
+.cta-row{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:13px 22px;font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border:1px solid transparent}
+.btn.red{background:var(--red);color:#fff}
+.btn.ghost{border-color:rgba(255,255,255,.35);color:#fff}
+.btn:hover{filter:brightness(1.1)}
+
+section{padding-block:clamp(40px,7vw,72px)}
+.head{display:flex;align-items:end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+
+/* categorías */
+.cats{display:grid;grid-template-columns:repeat(7,1fr);gap:12px}
+.cat{position:relative;border:0;padding:0;background:var(--panel);border-radius:6px;overflow:hidden;aspect-ratio:4/5;max-width:100%;text-align:left}
+.cat img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.cat:hover img{transform:scale(1.05)}
+.cat span{position:absolute;left:0;right:0;bottom:0;padding:28px 12px 12px;background:linear-gradient(transparent,rgba(0,0,0,.85));font-family:var(--font-display);font-size:20px;letter-spacing:.04em;color:#fff}
+@media (max-width:1100px){.cats{grid-template-columns:repeat(4,1fr)}}
+@media (max-width:900px){.cats{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:520px){.cats{grid-template-columns:repeat(2,1fr)}}
+
+/* carrusel */
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(220px,260px);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px}
+.rail .card{scroll-snap-align:start}
+
+/* tarjetas de producto */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px}
+.card{display:grid;gap:10px;border:0;background:none;padding:0;text-align:left;min-width:0}
+.card .ph{position:relative;aspect-ratio:4/5;max-width:100%;background:#141416;border-radius:6px;overflow:hidden}
+.card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.card:hover .ph img{transform:scale(1.04)}
+.tag{position:absolute;top:10px;left:10px;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px;border-radius:3px;background:#fff;color:#111}
+.tag.red{background:var(--red);color:#fff}
+.tag.hot{background:#ffb020;color:#111}
+.tag.dto{left:auto;right:10px;top:auto;bottom:24px}
+.ultima{background:rgba(255,176,32,.12);border:1px solid rgba(255,176,32,.5);color:#ffd28a;border-radius:6px;padding:8px 10px;font-size:13px;margin:0}
+.card h3{font-size:17px;line-height:1.1}
+.card .meta{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.card .price{color:#fff;font-size:14px}
+.card .meta{flex-wrap:wrap}
+.ref{display:block;width:100%;font-size:12px;color:#ffd28a}
+.ref s{color:var(--muted)}
+.card .dm{font-family:var(--font-mono);font-size:12px;color:var(--muted)}
+.card .brandname{font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+
+.card.off .ph img{opacity:.45;filter:grayscale(1)}
+.demo{display:inline-flex;align-items:center;gap:8px;background:#f2f3f5;color:#111;border-radius:999px;padding:5px 12px;font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;width:fit-content}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.btn.wa{background:#25d366;color:#08130c;border-color:#25d366;font-weight:700}
+.ad{position:relative;border-radius:10px;overflow:hidden;background:#0b0b0c;box-shadow:0 18px 40px rgba(0,0,0,.5)}
+.drop-rail{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;scroll-behavior:smooth}.drop-rail::-webkit-scrollbar{display:none}
+.drop-s{flex:0 0 100%;aspect-ratio:4/5;border:0;padding:0;scroll-snap-align:start;cursor:pointer;background:#111}.drop-s img{width:100%;height:100%;object-fit:cover;display:block}
+@media(min-width:760px){.ad{max-width:520px;margin:0 auto}}
+.ad-badge{display:table;margin:0 auto 12px;white-space:nowrap;background:var(--red);color:#fff;font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;padding:6px 12px;border-radius:3px;text-transform:uppercase;animation:pop 2.4s ease-in-out infinite}
+.ad-dots{display:flex;justify-content:center;gap:6px;margin-top:12px}.ad-dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);transition:all .3s}.ad-dots i.on{width:22px;border-radius:4px;background:#fff}
+.ad-cta{display:flex;justify-content:center;margin-top:14px}
+#upWrap{min-width:0;max-width:100%;overflow:hidden}.drawer>div{min-width:0}#up{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}#up::-webkit-scrollbar{display:none}#up .card{flex:0 0 104px}#up .card h3,#up .card .brand{display:none!important}#up .card .ph{aspect-ratio:4/5}
+.buscar{margin:-8px 0 14px}.buscar input{width:100%;background:var(--panel);color:inherit;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit;font-size:15px}.buscar input:focus{outline:2px solid var(--red);outline-offset:1px}
+.linkbtn{background:none;border:0;padding:0;color:#e9e9ec;text-decoration:underline;text-underline-offset:3px;font:inherit;font-size:13px;cursor:pointer;justify-self:start}
+.sheet-meta{display:flex;flex-wrap:wrap;gap:6px}.sheet-meta span{font-size:11px;border:1px solid var(--line);border-radius:999px;padding:5px 9px;color:#cfd2d8}
+.rel{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.rel .card{gap:4px}.rel .card .ph{border-radius:6px}.rel .card h3{font-size:12px!important;line-height:1.15}.rel .card .price{font-size:12px}.rel .card .ref,.rel .card .brand,.rel .card .tag,.rel .card .dots{display:none!important}
+@media(max-width:640px){.rel{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.guia-box{grid-template-columns:1fr!important;width:min(560px,100%)!important}
+.gt{width:100%;border-collapse:collapse;font-size:13px}.gt th,.gt td{border:1px solid var(--line);padding:6px 4px;text-align:center}.gt th{background:var(--ink);font-weight:700;text-align:left;padding-left:8px}
+.faq{display:grid;gap:8px}.faq details{border:1px solid var(--line);border-radius:10px;background:var(--panel);padding:0 16px}.faq summary{cursor:pointer;padding:16px 0;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:12px}.faq summary::-webkit-details-marker{display:none}.faq summary::after{content:"+";font-size:20px;line-height:1;color:var(--red)}.faq details[open] summary::after{content:"−"}.faq p{margin:0 0 16px;color:#c4c7ce}
+.chip{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600}
+.chip[aria-pressed="true"]{background:#f2f3f5;color:#111;border-color:#f2f3f5}
+.filtros2{display:flex;gap:10px;align-items:center;margin:-8px 0 22px}@media(max-width:640px){.filtros2{flex-wrap:wrap}.filtros2 .marcas{flex-basis:100%}}.orden{flex:none;background:var(--panel);color:inherit;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font:inherit;font-size:12px;font-weight:600}
+.marcas{flex:1;min-width:0;display:flex;gap:8px;overflow-x:auto;margin:0;padding-bottom:4px;scrollbar-width:none}.marcas::-webkit-scrollbar{display:none}
+.marca{flex:none;border:1px solid var(--line);background:transparent;color:inherit;border-radius:8px;padding:8px 16px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.marca[aria-pressed="true"]{background:#d6202a;border-color:#d6202a;color:#fff}
+
+/* confianza */
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.trust div{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:22px}
+.trust strong{display:block;font-family:var(--font-display);font-size:20px;letter-spacing:.04em;color:#fff;margin-bottom:6px;text-transform:uppercase}
+.trust p{margin:0;color:var(--muted);font-size:14px}
+.enc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(20px,4vw,48px);align-items:start;border:1px solid var(--line);border-radius:16px;padding:clamp(20px,4vw,40px);background:linear-gradient(135deg,rgba(214,32,38,.16),rgba(255,255,255,.02) 55%)}
+.enc h2 em{font-style:normal;color:var(--red)}.enc p{color:var(--muted);line-height:1.5}
+.enc-list{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:10px}.enc-list li{display:flex;gap:10px;align-items:flex-start;line-height:1.4}.enc-list b{color:#fff}
+.enc-brands{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}.enc-brands span{border:1px solid var(--line);border-radius:999px;padding:6px 11px;font-size:12px;color:#ddd}
+.enc form{display:grid;gap:10px}.enc label{display:grid;gap:5px;font-size:12px;font-family:var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.enc input,.enc select,.enc textarea{width:100%;background:var(--panel);color:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit;font-size:16px;text-transform:none;letter-spacing:0}
+.enc textarea{min-height:70px;resize:vertical}.enc .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.enc .btn{justify-content:center}
+#encPrev[hidden]{display:none!important}
+.enc .fotoBtn{display:flex;align-items:center;justify-content:center;gap:8px;border:1px dashed var(--line);border-radius:10px;padding:14px;color:#fff;font-family:var(--font-body,inherit);font-size:15px;letter-spacing:0;text-transform:none;cursor:pointer;background:var(--panel)}.enc .sr{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}.enc label:focus-within .fotoBtn{outline:2px solid var(--red)}
+.card .tag{left:auto;right:10px;top:52px;bottom:auto;max-width:calc(100% - 20px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.card .dto+.tag{top:80px}
+.fav{position:absolute;right:8px;top:8px;z-index:3;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(10,10,12,.62);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff;font-size:17px;line-height:1;border:1px solid rgba(255,255,255,.18);cursor:pointer;transition:transform .2s}
+.fav[aria-pressed="true"]{background:var(--red);border-color:var(--red)}.fav:active{transform:scale(.88)}
+.rel .fav,#up .fav{display:none}
+.tallaSel{flex:none;background:var(--panel);color:inherit;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font:inherit;font-size:13px}
+.favBtn{flex:none;border:1px solid var(--line);background:transparent;color:inherit;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap}.favBtn[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:#fff}
+#vistosWrap .rail{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}#vistosWrap .rail::-webkit-scrollbar{display:none}#vistosWrap .card{flex:0 0 150px}#vistosWrap .dto{display:none}#vistosWrap .tag{top:50px;font-size:9px}#vistosWrap .card h3{font-size:14px}
+.social{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.social a{display:flex;gap:14px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:18px;background:var(--panel);color:#fff;text-decoration:none;transition:border-color .2s}.social a:hover{border-color:var(--red)}.social i{font-style:normal;width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:22px;flex:none}.social b{display:block;font-family:var(--font-display);font-size:22px;letter-spacing:.02em;text-transform:uppercase;font-weight:400}.social span{color:var(--muted);font-size:13px}
+@media (max-width:640px){.social{grid-template-columns:1fr}}
+.enc small{color:var(--muted);font-size:12px;text-align:center}
+.card.enc-tile{text-decoration:none;color:inherit}.enc-tile .ph>div{font-size:40px}.card.enc-tile .ph{display:grid;place-items:center;text-align:center;padding:18px;background:linear-gradient(160deg,#2a1214,#141416);border:1px dashed rgba(214,32,38,.6)}
+.enc-tile .ph strong{font-family:var(--font-display);font-size:26px;line-height:1;text-transform:uppercase;color:#fff;display:block;margin:10px 0 8px}.enc-tile .ph span{color:var(--muted);font-size:13px;line-height:1.35}.enc-tile .ph em{font-style:normal;display:inline-block;margin-top:12px;background:var(--red);color:#fff;border-radius:999px;padding:8px 14px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.vacio{grid-column:1/-1;text-align:center;padding:28px 16px;border:1px dashed var(--line);border-radius:12px;color:var(--muted)}.vacio b{color:#fff}
+@media (max-width:720px){.enc{grid-template-columns:1fr}}
+@media (max-width:720px){.trust{grid-template-columns:1fr}}
+
+/* fundador */
+.founder{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(20px,5vw,56px);align-items:center}
+.founder img{width:100%;border-radius:6px;aspect-ratio:4/5;object-fit:cover;max-width:100%}
+.founder p{color:#c4c7ce;max-width:52ch}
+.steps{display:grid;gap:10px;margin-top:18px;padding:0;list-style:none;counter-reset:s}
+.steps li{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;color:#c4c7ce}
+.steps li::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--red);color:#fff;font-weight:700;font-size:13px}
+@media (max-width:720px){.founder{grid-template-columns:1fr}}
+
+footer{border-top:1px solid var(--line);padding-block:28px;color:var(--muted);font-size:13px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
+
+/* ayuda flotante */
+.totop{position:fixed;left:calc(16px + env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:15;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(20,20,22,.85);color:#fff;font-size:20px;font-weight:700;cursor:pointer;backdrop-filter:blur(6px);box-shadow:0 6px 18px rgba(0,0,0,.4);opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .25s,transform .25s}.totop.show{opacity:1;pointer-events:auto;transform:none}
+.help{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:15;display:flex;align-items:center;gap:8px;background:#fff;color:#111;border-radius:999px;padding:10px 14px 10px 12px;font-weight:700;font-size:13px;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.45)}
+.help i{width:26px;height:26px;border-radius:50%;background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af);display:grid;place-items:center;font-style:normal;color:#fff;font-size:13px}
+
+/* ficha y pedido */
+.sheet{position:fixed;inset:0;z-index:40;display:grid;place-items:center;background:rgba(0,0,0,.7);padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.sheet .box{background:var(--panel);border:1px solid var(--line);border-radius:10px;width:min(820px,100%);max-height:100%;overflow:auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.sheet .box .track img{width:100%;object-fit:cover}
+.sheet .body{padding:22px;display:grid;gap:14px;align-content:start}
+.sheet h3{font-size:30px;line-height:1}
+.gal{position:relative;background:#ececee;min-width:0}
+.gal .track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;height:100%;touch-action:pan-x pan-y}
+.gal .track::-webkit-scrollbar{display:none}
+.gal .track img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;scroll-snap-align:center;min-height:280px;max-height:560px;display:block}
+.gal .nav{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.85);color:#111;font-size:24px;line-height:1;display:grid;place-items:center}
+.gal .prev{left:10px}.gal .next{right:10px}
+.gal .count{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.6);color:#fff;font-family:var(--font-mono);font-size:11px;padding:3px 8px;border-radius:999px}
+.ph .dots{position:absolute;bottom:8px;left:0;right:0;display:flex;justify-content:center;gap:4px;pointer-events:none}
+.ph .dots i{width:6px;height:6px;border-radius:50%;background:rgba(0,0,0,.25)}
+.ph .dots i.on{background:#111}
+.ph .strip{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;height:100%}
+.ph .strip::-webkit-scrollbar{display:none}
+.ph .strip img{flex:0 0 100%;scroll-snap-align:center}
+.thumbs{position:absolute;left:10px;bottom:10px;display:flex;gap:6px}
+.thumbs button{border:2px solid transparent;padding:0;border-radius:4px;overflow:hidden;width:46px;height:58px;background:#fff}
+.thumbs button[aria-pressed="true"]{border-color:var(--red)}
+.thumbs img{width:100%;height:100%;object-fit:cover}
+.thumbs .play{display:grid;place-items:center;width:100%;height:100%;background:#111;color:#fff;font-size:18px}
+.gal .track video{flex:0 0 100%;width:100%;object-fit:cover;scroll-snap-align:center;display:block;background:#ececee;aspect-ratio:4/5}
+.sizes{display:flex;flex-wrap:wrap;gap:8px}
+.sizes button{min-width:46px;border:1px solid var(--line);background:var(--ink);border-radius:6px;padding:9px 10px;font-weight:600}
+.sizes button[aria-pressed="true"]{background:#f2f3f5;color:#111}
+.close{justify-self:end;border:1px solid var(--line);background:var(--ink);border-radius:999px;width:36px;height:36px}
+@media (max-width:640px){.sheet .box{grid-template-columns:1fr}.sheet .box .track img{max-height:420px;min-height:0;aspect-ratio:4/5}}
+.drawer{position:fixed;top:0;right:0;bottom:0;z-index:45;width:min(420px,100%);background:var(--panel);border-left:1px solid var(--line);display:grid;grid-template-rows:auto 1fr auto;padding:calc(18px + env(safe-area-inset-top,0px)) max(18px,env(safe-area-inset-right,0px)) calc(18px + env(safe-area-inset-bottom,0px)) 18px;gap:14px}
+.line-item{display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:center;padding-block:10px;border-bottom:1px solid var(--line)}
+.line-item img{width:56px;height:70px;object-fit:cover;border-radius:4px}
+.line-item small{color:var(--muted)}
+.line-item button{border:0;background:none;color:var(--muted);font-size:12px;text-decoration:underline}
+.items{overflow:auto;min-height:0}
+.envio{font-size:13px;border:1px solid var(--line);border-radius:6px;padding:10px 12px;display:grid;gap:8px}
+.envio .bar{height:6px;border-radius:999px;background:var(--line);overflow:hidden}
+.envio .bar i{display:block;height:100%;background:var(--red)}
+.envio.ok{border-color:#2f7d4a;color:#bfe8cc}
+.envio.ok .bar i{background:#2f9e5a}
+.total{display:flex;justify-content:space-between;font-weight:700;font-size:16px}
+.order-text{width:100%;min-height:110px;background:var(--ink);color:var(--silver);border:1px solid var(--line);border-radius:6px;padding:10px;font-family:var(--font-mono);font-size:12px;resize:vertical}
+.note{font-size:12px;color:var(--muted);margin:0}
+.toast{position:fixed;left:50%;bottom:calc(80px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:50;background:#fff;color:#111;border-radius:999px;padding:10px 16px;font-weight:700;font-size:13px}
+
+/* ===== Animaciones ===== */
+@keyframes heroIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes heroZoom{from{transform:scale(1.12)}to{transform:scale(1)}}
+@keyframes shine{0%{background-position:-160% 0}55%,100%{background-position:260% 0}}
+@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.35)}100%{transform:scale(1)}}
+@keyframes waPulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.55)}70%{box-shadow:0 0 0 14px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+@keyframes flyPlane{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
+.hero>img{animation:heroZoom 2.4s cubic-bezier(.2,.7,.2,1) both}
+.hero .wrap>*{opacity:0;animation:heroIn .8s cubic-bezier(.2,.7,.2,1) forwards}
+.hero .wrap>*:nth-child(1){animation-delay:.15s}.hero .wrap>*:nth-child(2){animation-delay:.3s}.hero .wrap>*:nth-child(3){animation-delay:.45s}
+.hero .wrap>*:nth-child(4){animation-delay:.6s}.hero .wrap>*:nth-child(5){animation-delay:.7s}.hero .wrap>*:nth-child(6){animation-delay:.8s}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.card .ph{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+.card:hover .ph{transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,0,0,.45)}
+.tag.red{background-image:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.45) 50%,transparent 65%);background-size:220% 100%;background-repeat:no-repeat;animation:shine 3.2s ease-in-out infinite}
+.btn.red,.btn.wa{transition:transform .2s,filter .2s}.btn.red:hover,.btn.wa:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.btn.wa,.help i{animation:waPulse 2.2s infinite}
+#cartCount.pop{animation:pop .45s ease}
+.cat span{transition:letter-spacing .3s}.cat:hover span{letter-spacing:.04em}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal,.hero .wrap>*{opacity:1!important;transform:none!important}}
+.card .ph{padding:0!important}.card .ph>img{position:absolute;inset:0;object-position:center top}.card .ph .strip img{position:static;object-position:center top}.card .ph .fav{top:8px;left:8px;right:auto;width:32px;height:32px;font-size:15px}.card .chips{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0}.card .chips .tag{position:static;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#grid .card:not(.enc-tile){background:#121214;border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:8px 8px 14px}#grid .card:not(.enc-tile) .ph{border-radius:8px}#grid .card:not(.enc-tile)>:not(.ph){padding-left:4px;padding-right:4px}#grid{gap:22px}</style>
+
+<div class="announce" aria-label="Anuncio"><div class="track">
+  <span>Ropa 100% original · comprada en tienda en Nueva York</span><span>Envío gratis desde 2 prendas 🇨🇴</span><span>Pedidos por WhatsApp o DM @midnightsaints1</span><span>¿No está en la tienda? Pídelo y te digo si se puede 🗽</span>
+  <span>Ropa 100% original · comprada en tienda en Nueva York</span><span>Envío gratis desde 2 prendas 🇨🇴</span><span>Pedidos por WhatsApp o DM @midnightsaints1</span><span>¿No está en la tienda? Pídelo y te digo si se puede 🗽</span>
+</div></div>
+
+<header><div class="wrap">
+  <a class="brand" href="#inicio"><img src="img/logo.png" alt="Logo Midnight Saints"><span>MIDNIGHT SAINTS</span></a>
+  <nav aria-label="Secciones"><a href="#drop">Drop</a><a href="#categorias">Categorías</a><a href="#nuevo">Nuevo</a><a href="#catalogo">Catálogo</a><a href="#encargos">Encargos</a><a href="#faq">FAQ</a><a href="#como-comprar">Cómo comprar</a></nav>
+  <button class="cart-btn" id="cartBtn" type="button" aria-label="Ver mi pedido">Mi pedido <b id="cartCount">0</b></button>
+</div></header>
+
+<main id="inicio">
+  <div class="hero">
+    <img src="img/hero.jpg" alt="Carro lleno de bolsas de compras en un parqueadero de Nueva York">
+    <div class="wrap">
+      <span class="route">NYC 🇺🇸 → ✈️ → COL 🇨🇴 · Built in the dark</span>
+      <h1>Ropa original de Nueva York, <em>en tu puerta.</em></h1>
+      <p>Nike, Jordan, adidas y Coach comprados en tienda oficial en Nueva York. Sin réplicas: si quieres, te muestro el recibo.</p>
+      <ul class="perks"><li>✅ 100% original</li><li>📦 Envío gratis desde 2 prendas</li><li>🇨🇴 A toda Colombia</li></ul>
+      <p class="hot" id="heroHot"></p>
+      <div class="cta-row"><a class="btn red" href="#catalogo">Ver lo que llegó</a><a class="btn ghost" href="https://wa.me/19294888365" target="_blank" rel="noopener">Pedir por WhatsApp</a></div>
+    </div>
+  </div>
+
+  <section id="drop" style="padding-bottom:0"><div class="wrap">
+    <span class="ad-badge" id="adBadge"></span><div class="ad"><div class="drop-rail" id="adRail"></div></div><div class="ad-dots" id="adDots"></div>
+    <div class="ad-cta"><button class="btn red" type="button" id="adCta"></button></div>
+  </div></section>
+
+  <section id="categorias"><div class="wrap">
+    <div class="head"><h2>Explora por categoría</h2></div>
+    <div class="cats" id="cats"></div>
+  </div></section>
+
+  <section id="nuevo" style="padding-top:0"><div class="wrap">
+    <div class="head"><div><p class="eyebrow">Llegó esta semana</p><h2>Nueva colección</h2></div><a class="dm" href="#catalogo" style="color:var(--muted);font-size:13px">Ver todo →</a></div>
+    <div class="rail" id="rail"></div>
+  </div></section>
+
+  <section id="catalogo" style="padding-top:0"><div class="wrap">
+    <div class="head"><div><p class="eyebrow" id="countLabel"></p><h2>Catálogo</h2></div><div class="chips" id="chips" role="group" aria-label="Filtrar por categoría"></div></div>
+    <div class="buscar"><input id="q" type="search" placeholder="Buscar: Dn8, Jordan, gorra, sudadera…" aria-label="Buscar productos" autocomplete="off"></div>
+    <div class="filtros2"><div class="marcas" id="marcas" role="group" aria-label="Filtrar por marca"></div><select id="tallaSel" class="tallaSel" aria-label="Filtrar por talla"><option value="">Mi talla</option></select><button type="button" class="favBtn" id="favBtn" aria-pressed="false">♡ Favoritos</button><select id="orden" class="orden" aria-label="Ordenar por precio"><option value="">Ordenar</option><option value="asc">Precio: menor a mayor</option><option value="desc">Precio: mayor a menor</option></select></div>
+    <div class="grid" id="grid"></div>
+    <div id="vistosWrap" hidden style="margin-top:40px"><div class="head"><div><p class="eyebrow">Para que no se te pierda</p><h2>Vistos recientemente</h2></div></div><div class="rail" id="vistos"></div></div>
+  </div></section>
+
+  <section id="encargos" style="padding-top:0"><div class="wrap"><div class="enc">
+    <div>
+      <p class="eyebrow">Encargos · productos que no están en la tienda</p>
+      <h2>¿No está en la tienda? <em>Pídelo.</em></h2>
+      <p>Si buscas unos tenis, ropa o gorra que <b style="color:#fff">no está en el catálogo</b>, dime cuál es. Lo busco en Nueva York y <b style="color:#fff">te digo si se puede conseguir o no</b>. Si se puede, te mando fotos y el precio final con envío antes de comprar.</p>
+      <ul class="enc-list">
+        <li>🔎 <span><b>Lo busco por ti</b> en Nike, Foot Locker, New Era, adidas, Coach y más.</span></li>
+        <li>💬 <span><b>Te respondo si se puede o no.</b> Si no lo consigo o no hay tu talla, te aviso.</span></li>
+        <li>📸 <span><b>Fotos reales</b> del producto en la tienda antes de que pagues.</span></li>
+        <li>✅ <span><b>100% original</b>, con recibo de compra si lo quieres.</span></li>
+        <li>🇨🇴 <span><b>Te llega a tu casa</b> en Colombia con número de guía.</span></li>
+      </ul>
+      <div class="enc-brands"><span>Jordan</span><span>Nike</span><span>adidas</span><span>New Era</span><span>Coach</span><span>Lo que busques</span></div>
+    </div>
+    <form id="encForm" novalidate>
+      <label>¿Qué buscas? *<input id="encQue" required placeholder="Ej: Jordan 4 Black Cat, gorra Yankees 59FIFTY…" autocomplete="off"></label>
+      <div class="row2">
+        <label>Talla<input id="encTalla" placeholder="Ej: 9.5 US, L" autocomplete="off"></label>
+        <label>Color<input id="encColor" placeholder="Ej: negro" autocomplete="off"></label>
+      </div>
+      <div class="row2">
+        <label>Ciudad<input id="encCiudad" placeholder="Ej: Medellín" autocomplete="address-level2"></label>
+        <label>Presupuesto<select id="encPres"><option value="">Sin definir</option><option>Hasta $200.000</option><option>$200.000 – $400.000</option><option>$400.000 – $700.000</option><option>Más de $700.000</option></select></label>
+      </div>
+      <label>Link o detalles (opcional)<textarea id="encDet" placeholder="Pega un link o escribe una referencia."></textarea></label>
+      <label>Foto del producto (opcional)<span class="fotoBtn">📷 <span id="encFotoTxt">Subir foto o captura</span></span><input id="encFoto" type="file" accept="image/*" class="sr"></label>
+      <div id="encPrev" hidden style="display:flex;gap:10px;align-items:center"><img id="encImg" alt="Tu foto" style="width:64px;height:64px;object-fit:cover;border-radius:8px;border:1px solid var(--line)"><span style="color:var(--muted);font-size:13px;line-height:1.35">✅ Foto lista. Al tocar el botón verde se abre WhatsApp con tu encargo; ahí toca <b style="color:#fff">📎 o +</b> y envíame esta foto.</span></div>
+      <a class="btn wa" id="encBtn" href="https://wa.me/19294888365" target="_blank" rel="noopener">Preguntar por WhatsApp 💬</a>
+      <button class="btn ghost" type="button" id="encShare" hidden>Compartir la foto a WhatsApp 📸</button>
+      <a class="btn ghost" href="https://ig.me/m/midnightsaints1" target="_blank" rel="noopener">O escríbeme por Instagram 📩</a>
+      <small>No todo se consigue: depende de lo que haya en las tiendas de Nueva York. Preguntar no cuesta nada y no te compromete a nada.</small>
+    </form>
+  </div></div></section>
+
+  <section style="padding-top:0"><div class="wrap">
+    <div class="trust">
+      <div><strong>📦 Envío gratis desde 2 prendas</strong><p>Enviamos a toda Colombia. Llevando 2 prendas o más, el envío desde Nueva York va por nuestra cuenta. Con 1 prenda, te cotizamos el envío por DM.</p></div>
+      <div><strong>✅ 100% original</strong><p>Todo se compra en tiendas oficiales de Nueva York: Nike, Foot Locker, New Era. Te mostramos el recibo si quieres.</p></div>
+      <div><strong>💬 Atención directa</strong><p>Hablas conmigo por DM. Te confirmo tu talla y te mando fotos reales antes de comprar.</p></div>
+    </div>
+  </div></section>
+
+  <section id="como-comprar" style="padding-top:0"><div class="wrap founder">
+    <img src="img/fundador.jpg" alt="El fundador de Midnight Saints con su compra en Nueva York">
+    <div>
+      <p class="eyebrow">Quién está detrás</p>
+      <h2>Desde Nueva York, pa' los que saben</h2>
+      <p>Midnight Saints es una tienda pequeña: yo voy a las tiendas, escojo cada prenda y la mando a Colombia. Sin réplicas, sin intermediarios.</p>
+      <ol class="steps">
+        <li>Arma tu pedido aquí y elige tu talla.</li>
+        <li>Toca "Pedir por WhatsApp": el mensaje con tu pedido ya va escrito, solo envíalo. (También puedes pedir por Instagram DM.)</li>
+        <li>Te confirmamos disponibilidad y total. Pagas por Nequi o transferencia y te llega a la puerta con número de guía.</li>
+      </ol>
+    </div>
+  </div></section>
+
+  <section id="siguenos" style="padding-top:0"><div class="wrap">
+    <div class="head"><div><p class="eyebrow">Lo nuevo sale primero en redes</p><h2>Síguenos</h2></div></div>
+    <div class="social">
+      <a href="https://www.instagram.com/midnightsaints1/" target="_blank" rel="noopener"><i style="background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af)">📸</i><div><b>Instagram</b><span>@midnightsaints1 · drops, fotos reales y pedidos por DM</span></div></a>
+      <a href="https://www.tiktok.com/@midnight.saints4" target="_blank" rel="noopener"><i style="background:#111;border:1px solid #333">🎵</i><div><b>TikTok</b><span>@midnight.saints4 · videos de lo que llega de NY</span></div></a>
+    </div>
+  </div></section>
+
+  <section id="faq" style="padding-top:0"><div class="wrap">
+    <div class="head"><h2>Preguntas frecuentes</h2></div>
+    <div class="faq">
+      <details><summary>¿Es 100% original?</summary><p>Sí. Todo lo compro yo mismo en tiendas oficiales de Nueva York (Nike, Foot Locker, New Era, Coach, adidas). Si quieres, te muestro el recibo de compra de tu prenda antes de pagar.</p></details>
+      <details><summary>¿Cómo pago?</summary><p>Por Nequi o transferencia bancaria. Primero te confirmo que tu talla está disponible y el total, y después pagas.</p></details>
+      <details><summary>¿Cuánto cuesta el envío?</summary><p>Llevando 2 prendas o más, el envío es gratis. Con 1 prenda te cotizo el envío a tu ciudad por WhatsApp antes de pagar.</p></details>
+      <details><summary>¿Envían a toda Colombia?</summary><p>Sí, enviamos a cualquier ciudad de Colombia y te paso el número de guía para que sigas tu paquete.</p></details>
+      <details><summary>¿Qué talla pido?</summary><p>Revisa la guía de tallas dentro de cada producto. Las tallas de EE. UU. suelen quedar más grandes. Si tienes dudas, escríbeme tu estatura y peso y te recomiendo la talla.</p></details>
+      <details><summary>¿Me consigues algo que no está en la tienda?</summary><p>Sí, hago pedidos por encargo desde Nueva York. Escríbeme qué buscas (modelo y talla) y te paso el precio. Para encargos pido un anticipo.</p></details>
+    </div>
+  </div></section>
+</main>
+
+<footer><div class="wrap">
+  <span>© Midnight Saints · No nacimos para encajar, nacimos para destacar.</span>
+  <a href="https://www.instagram.com/midnightsaints1/" target="_blank" rel="noopener">Instagram @midnightsaints1</a> · <a href="https://www.tiktok.com/@midnight.saints4" target="_blank" rel="noopener">TikTok @midnight.saints4</a> · <a href="https://wa.me/19294888365" target="_blank" rel="noopener">WhatsApp +1 929 488 8365</a>
+</div></footer>
+
+<button class="totop" id="toTop" type="button" aria-label="Volver arriba">↑</button>
+<a class="help" href="https://wa.me/19294888365?text=Hola%20Midnight%20Saints%20%F0%9F%91%8B%20tengo%20una%20pregunta" target="_blank" rel="noopener"><i style="background:#25d366">✆</i>¿Necesitas ayuda?</a>
+
+<div class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+  <div class="box">
+    <div class="gal"><div class="track" id="track" aria-label="Fotos del producto"></div><img id="sheetImg" alt="" hidden><button class="nav prev" id="prevFoto" type="button" aria-label="Foto anterior">‹</button><button class="nav next" id="nextFoto" type="button" aria-label="Foto siguiente">›</button><span class="count" id="fotoCount"></span><div class="thumbs" id="thumbs"></div></div>
+    <div class="body">
+      <button class="close" id="sheetClose" type="button" aria-label="Cerrar">✕</button>
+      <span class="brandname" id="sheetBrand"></span>
+      <h3 id="sheetTitle"></h3>
+      <div id="sheetPrice"></div>
+      <p class="ultima" id="ultima" hidden></p>
+      <p id="sheetDesc" style="margin:0;color:#c4c7ce"></p>
+      <div><p class="eyebrow" style="margin:0 0 8px">Talla</p><div class="sizes" id="sizes" role="group" aria-label="Elegir talla"></div></div>
+      <button class="linkbtn" id="guiaBtn" type="button">📏 Guía de tallas</button>
+      <button class="btn red" id="addBtn" type="button" style="justify-content:center">Agregar al pedido</button>
+      <a class="btn wa" id="buyWa" href="https://wa.me/19294888365" target="_blank" rel="noopener" style="justify-content:center">Comprar ya por WhatsApp 💬</a>
+      <div class="sheet-meta"><span>✅ 100% original</span><span>🇺🇸 Comprado en NY</span><span>📦 A toda Colombia</span></div>
+      <button class="linkbtn" id="shareBtn" type="button">🔗 Compartir este producto</button>
+      <p class="note">Te confirmo la disponibilidad de tu talla antes de pagar.</p>
+      <div id="relWrap"><p class="eyebrow" style="margin:6px 0 8px">Combínalo con</p><div class="rel" id="rel"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="sheet" id="guia" hidden role="dialog" aria-modal="true" aria-labelledby="guiaT"><div class="box guia-box"><div class="body">
+  <button class="close" id="guiaClose" type="button" aria-label="Cerrar">✕</button>
+  <h3 id="guiaT">Guía de tallas</h3>
+  <p class="eyebrow" style="margin:0">👟 Tenis (hombre)</p>
+  <table class="gt"><tr><th>US</th><td>7</td><td>8</td><td>8.5</td><td>9</td><td>9.5</td><td>10</td><td>11</td><td>12</td></tr><tr><th>COL</th><td>39</td><td>40-41</td><td>41</td><td>42</td><td>42</td><td>43</td><td>44</td><td>45</td></tr><tr><th>CM</th><td>25</td><td>26</td><td>26.5</td><td>27</td><td>27.5</td><td>28</td><td>29</td><td>30</td></tr></table>
+  <p class="eyebrow" style="margin:6px 0 0">👕 Ropa (EE. UU.)</p>
+  <table class="gt"><tr><th>Talla</th><td>S</td><td>M</td><td>L</td><td>XL</td><td>2XL</td></tr><tr><th>Equivale</th><td>M</td><td>L</td><td>XL</td><td>XXL</td><td>XXXL</td></tr><tr><th>Pecho cm</th><td>88-96</td><td>96-104</td><td>104-112</td><td>112-124</td><td>124-136</td></tr></table>
+  <p class="note">Las tallas de EE. UU. suelen quedar una talla más grandes que en Colombia, y varias prendas (Max90, Premium Essentials, Jordan Flight) son de corte amplio. ¿Dudas? Escríbeme tu estatura y peso y te digo cuál te queda.</p>
+  <a class="btn wa" href="https://wa.me/19294888365?text=Hola%20%F0%9F%91%8B%20%C2%BFqu%C3%A9%20talla%20me%20queda%3F%20Mido%20____%20y%20peso%20____" target="_blank" rel="noopener" style="justify-content:center">Preguntar mi talla por WhatsApp</a>
+</div></div></div>
+
+<aside class="drawer" id="drawer" hidden aria-label="Mi pedido">
+  <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="font-size:26px">Mi pedido</h3><button class="close" id="drawerClose" type="button" aria-label="Cerrar">✕</button></div>
+  <div class="items" id="items"></div>
+  <div style="display:grid;gap:10px">
+    <div class="envio" id="envio"></div><div id="upWrap" hidden><p class="eyebrow" style="margin:0 0 8px">Completa tu look</p><div class="rel" id="up"></div></div><div class="total"><span>Total</span><span class="price" id="total"></span></div>
+    <label for="orderText" class="note">Este es el mensaje de tu pedido:</label>
+    <textarea id="orderText" class="order-text" readonly></textarea>
+    <a class="btn wa" id="waBtn" href="https://wa.me/19294888365" target="_blank" rel="noopener" style="justify-content:center">Pedir por WhatsApp 💬</a>
+    <a class="btn ghost" id="sendBtn" href="https://ig.me/m/midnightsaints1" target="_blank" rel="noopener" style="justify-content:center">Pedir por Instagram DM 📩</a>
+    <p class="note" style="text-align:center;margin:0">Por WhatsApp el mensaje ya va escrito: solo toca enviar. Por Instagram se copia solo: pégalo en el chat. Te confirmamos tallas, total y cómo pagar (Nequi o transferencia).</p>
+  </div>
+</aside>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+/* ---------- DEMO: ilustraciones de producto dibujadas en SVG (sin fotos) ---------- */
+function art(tipo,c1,c2,c3){
+  const bg=`<defs><radialGradient id="g" cx="50%" cy="42%" r="70%"><stop offset="0" stop-color="#2a2a31"/><stop offset="1" stop-color="#121216"/></radialGradient><linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#000" stop-opacity=".25"/></linearGradient></defs><rect width="400" height="500" fill="url(#g)"/><ellipse cx="200" cy="430" rx="150" ry="16" fill="#000" opacity=".45"/>`;
+  const f={
+    tenis:`<g transform="translate(25,170)"><path d="M10 192 L330 192 Q354 192 350 170 L346 160 L12 160 Q4 176 10 192 Z" fill="${c3}"/><path d="M14 166 L20 104 Q22 86 44 84 L74 84 Q90 86 96 100 Q104 116 124 114 L166 108 Q196 96 222 102 L276 116 Q326 128 342 150 Q350 160 346 166 Z" fill="${c1}"/><path d="M14 166 L20 104 Q22 86 44 84 L74 84 Q90 86 96 100 Q104 116 124 114 L166 108 Q196 96 222 102 L276 116 Q326 128 342 150 Q350 160 346 166 Z" fill="url(#s)"/><path d="M40 90 Q66 80 90 98 Q72 104 46 102 Z" fill="#000" opacity=".45"/><path d="M80 150 Q170 160 270 122 Q300 128 300 134 Q200 172 84 162 Z" fill="${c2}"/><path d="M136 116 L150 104 M156 112 L170 100 M176 108 L190 96 M196 104 L210 94" stroke="${c3}" stroke-width="5" stroke-linecap="round"/><rect x="22" y="174" width="318" height="7" rx="3" fill="${c2}" opacity=".55"/><path d="M300 136 Q330 140 342 152" stroke="#fff" stroke-opacity=".25" stroke-width="3" fill="none"/></g>`,
+    hoodie:`<g transform="translate(60,70)"><path d="M90 60 Q140 0 190 60 L250 80 L285 250 L250 262 L238 170 L238 340 L42 340 L42 170 L30 262 L-5 250 L30 80 Z" fill="${c1}"/><path d="M90 60 Q140 0 190 60 L250 80 L285 250 L250 262 L238 170 L238 340 L42 340 L42 170 L30 262 L-5 250 L30 80 Z" fill="url(#s)"/><path d="M98 64 Q140 20 182 64 Q160 96 140 98 Q120 96 98 64 Z" fill="#000" opacity=".35"/><path d="M128 98 L124 150 M152 98 L156 150" stroke="${c3}" stroke-width="4" stroke-linecap="round"/><path d="M80 250 L200 250 L210 300 L70 300 Z" fill="#000" opacity=".18"/><circle cx="140" cy="190" r="26" fill="${c2}"/></g>`,
+    camiseta:`<g transform="translate(55,100)"><path d="M110 20 Q145 45 180 20 L245 45 L290 110 L245 135 L235 115 L235 320 L55 320 L55 115 L45 135 L0 110 L45 45 Z" fill="${c1}"/><path d="M110 20 Q145 45 180 20 L245 45 L290 110 L245 135 L235 115 L235 320 L55 320 L55 115 L45 135 L0 110 L45 45 Z" fill="url(#s)"/><rect x="95" y="120" width="100" height="110" rx="10" fill="${c2}"/><path d="M110 200 L145 140 L180 200 Z" fill="${c3}"/></g>`,
+    gorra:`<g transform="translate(40,150)"><path d="M60 180 Q60 40 170 40 Q280 40 280 180 Z" fill="${c1}"/><path d="M60 180 Q60 40 170 40 Q280 40 280 180 Z" fill="url(#s)"/><path d="M170 40 L170 180 M115 55 Q100 120 108 180 M225 55 Q240 120 232 180" stroke="#000" stroke-opacity=".25" stroke-width="3" fill="none"/><path d="M40 178 L300 178 Q340 182 330 205 Q250 222 40 200 Z" fill="${c3}"/><circle cx="170" cy="42" r="9" fill="${c3}"/><rect x="140" y="110" width="60" height="34" rx="6" fill="${c2}"/></g>`,
+    jean:`<g transform="translate(95,60)"><path d="M10 10 L200 10 L215 380 L130 380 L106 120 L82 380 L-5 380 Z" fill="${c1}"/><path d="M10 10 L200 10 L215 380 L130 380 L106 120 L82 380 L-5 380 Z" fill="url(#s)"/><rect x="10" y="10" width="190" height="24" fill="#000" opacity=".2"/><path d="M106 34 L106 120" stroke="${c2}" stroke-width="3"/><path d="M30 50 Q60 70 80 50 M130 50 Q160 70 185 50" stroke="${c2}" stroke-width="3" fill="none"/></g>`,
+    conjunto:`<g transform="translate(70,40)"><path d="M70 50 L200 50 L250 70 L275 210 L245 218 L232 140 L232 220 L38 220 L38 140 L25 218 L-5 210 L20 70 Z" fill="${c1}"/><path d="M70 50 L200 50 L250 70 L275 210 L245 218 L232 140 L232 220 L38 220 L38 140 L25 218 L-5 210 L20 70 Z" fill="url(#s)"/><path d="M135 50 L135 220" stroke="${c3}" stroke-width="4"/><path d="M20 70 L38 140 L38 220 L60 220 L60 120 Z" fill="${c2}"/><path d="M250 70 L232 140 L232 220 L210 220 L210 120 Z" fill="${c2}"/><path d="M45 230 L225 230 L235 410 L150 410 L135 280 L120 410 L35 410 Z" fill="${c1}"/><path d="M45 230 L225 230 L235 410 L150 410 L135 280 L120 410 L35 410 Z" fill="url(#s)"/><path d="M45 230 L60 230 L52 410 L35 410 Z M225 230 L210 230 L218 410 L235 410 Z" fill="${c2}"/></g>`
+  }[tipo];
+  return "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500">${bg}${f}</svg>`);
+}
+const ROPA=["S","M","L","XL"], CALZADO=["38","39","40","41","42","43","44"], SHORT=["30","32","34","36"], UNICA=["Única"];
+
+const PRODUCTS=[{"brand": "Nike", "cat": "calzado", "price": 579900, "antes": null, "ref": 1089950, "agotado": false, "ultima": true, "tag": "-47% vs Nike Colombia", "id": "air-max-dn8-sequoia", "name": "Nike Air Max Dn8 oliva y amarillo", "imgs": ["pres2/p_00.jpg?v=8", "nk/st_dn8_sequoia-fl0.jpg?v=14", "nk/dn8_sequoia-video.mp4", "nk/st_dn8_sequoia-fl1.jpg?v=14", "nk/st_dn8_sequoia-fl3.jpg?v=14", "nk/st_dn8_sequoia-fl4.jpg?v=14"], "sizes": ["US 9 · COL 42"], "desc": "Nike Air Max Dn8 color Sequoia/Bright Citron/Black, nuevos en caja. En Nike Colombia los Dn8 valen $1.089.950: aquí te ahorras $510.050, más de medio millón."}, {"brand": "Nike", "cat": "calzado", "price": 579900, "antes": null, "ref": 1089950, "agotado": false, "ultima": true, "tag": "-47% vs Nike Colombia", "id": "air-max-dn8-verde", "name": "Nike Air Max Dn8 negro y verde neón", "imgs": ["pres2/p_01.jpg?v=8", "nk/st_dn8_verde-fl0.jpg?v=14", "nk/dn8_verde-video.mp4", "nk/st_dn8_verde-fl5.jpg?v=14", "nk/st_dn8_verde-fl3.jpg?v=14", "nk/st_dn8_verde-fl4.jpg?v=14"], "sizes": ["US 10 · COL 43"], "desc": "Nike Air Max Dn8 color Black/Green Strike/Volt, nuevos en caja. En Nike Colombia los Dn8 valen $1.089.950: aquí te ahorras $510.050, más de medio millón."}, {"id": "air-max-dn8-pink-gaze", "name": "Nike Air Max Dn8 rosado y morado estampado", "brand": "Nike", "cat": "calzado", "price": 579900, "antes": null, "ref": 1089950, "refTxt": "Nike Colombia", "agotado": false, "ultima": true, "tag": "-47% vs Nike Colombia", "imgs": ["pres2/p_02.jpg?v=8", "nk/st_dn8_pink-fl0.jpg?v=14", "nk/st_dn8_pink-fl1.jpg?v=14", "nk/st_dn8_pink-fl2.jpg?v=14", "nk/st_dn8_pink-fl3.jpg?v=14", "nk/st_dn8_pink-0.jpg?v=14", "nk/st_dn8_pink-fl4.jpg?v=14"], "sizes": ["Consulta tu talla por DM"], "desc": "Nike Air Max Dn8 edición especial Pink Gaze/Black/Anthracite/Bright Violet: estampado rosado y morado con las 8 cápsulas Dynamic Air moradas. En EE. UU. vale $220 dólares y en Nike Colombia los Dn8 valen $1.089.950: aquí te ahorras más de medio millón. Nuevos en caja, comprados en Nueva York. Código Nike: IB6377-600."}, {"id": "jordan-max-aura-7", "name": "Jordan Max Aura 7 negro y rojo", "brand": "Jordan", "cat": "calzado", "price": 399900, "antes": null, "ref": null, "agotado": false, "ultima": false, "tag": "Solo 2 pares", "imgs": ["pres/jordan_aura7.jpg?v=8", "nk/st_aura7-0.jpg?v=14", "nk/aura7-video.mp4", "nk/st_aura7-4.jpg?v=14", "nk/st_aura7-3.jpg?v=14", "nk/st_aura7-1.jpg?v=15", "nk/st_aura7-2.jpg?v=14"], "sizes": ["US 8 · COL 41", "US 11 · COL 44"], "desc": "Jordan Max Aura 7 Black/White/Gym Red, nuevos en caja, 100% originales traídos de Nueva York. Solo hay 2 pares a este precio: uno talla US 8 (COL 41) y otro US 11 (COL 44). Fotos de referencia de Nike con el mismo diseño y color."}, {"id": "air-max-plus-tn-amarillo", "name": "Nike Air Max Plus (TN) amarillo y naranja", "brand": "Nike", "cat": "calzado", "price": 579900, "antes": null, "ref": 979950, "refTxt": "Nike Colombia", "agotado": false, "ultima": true, "tag": "-41% vs Nike Colombia", "imgs": ["pres2/p_03.jpg?v=8", "nk/st_amplus-0.jpg?v=14", "nk/st_amplus-4.jpg?v=14", "nk/st_amplus-2.jpg?v=14", "nk/st_amplus-3.jpg?v=14", "nk/st_amplus-1.jpg?v=14"], "sizes": ["US 11 · COL 44"], "desc": "Nike Air Max Plus (TN) color Lemon Venom/Hyper Crimson/Laser Orange/Blackened Blue, el degradado amarillo a naranja. Nuevos en caja, comprados en Nueva York. En Nike Colombia los Air Max Plus valen $979.950: aquí te ahorras $400.050. Código Nike: DM0032-701."}, {"id": "air-max-plus-vii-morado", "name": "Nike Air Max Plus VII morado, rosado y naranja", "brand": "Nike", "cat": "calzado", "price": 529900, "antes": null, "ref": 720965, "refTxt": "Nike Colombia (en oferta)", "agotado": false, "ultima": true, "tag": "-27% vs Nike Colombia", "imgs": ["pres2/p_04.jpg?v=8", "nk/st_amp7-fl0.jpg?v=14", "nk/st_amp7-fl1.jpg?v=14", "nk/st_amp7-fl2.jpg?v=14", "nk/st_amp7-fl3.jpg?v=14"], "sizes": ["US 10 · COL 43"], "desc": "Nike Air Max Plus VII (TN 7), el modelo nuevo de la línea TN: degradado morado, rosado y naranja con puntos y cámaras de aire visibles. En Nike Colombia vale $1.029.950 (hoy en oferta a $720.965). Nuevos en caja, comprados en Nueva York. Talla US 10 (COL 43), un solo par. Código Nike: HQ2197."}, {"id": "nike-cortez-leather-blanco", "name": "Nike Cortez Leather blanco y negro", "brand": "Nike", "cat": "calzado", "price": 339900, "antes": null, "ref": 509950, "refTxt": "Nike Colombia", "agotado": false, "ultima": true, "tag": "-33% vs Nike Colombia", "imgs": ["pres2/p_05.jpg?v=8", "nk/st_cortez-0.jpg?v=14", "nk/cortez-video.mp4", "nk/st_cortez-4.jpg?v=14", "nk/st_cortez-2.jpg?v=15", "nk/st_cortez-3.jpg?v=15", "nk/st_cortez-1.jpg?v=14"], "sizes": ["US 8 · COL 41"], "desc": "Nike Cortez Leather blanco con swoosh negro, el clásico. Nuevos en caja, comprados en Nueva York. En Nike Colombia valen $509.950 (mismo modelo y color): aquí te ahorras $170.050. Código Nike: DM4044-105."}, {"id": "air-max-torch-4", "name": "Nike Air Max Torch 4 gris y rojo", "brand": "Nike", "cat": "calzado", "price": 359900, "antes": null, "ref": null, "agotado": false, "ultima": true, "tag": "Nuevo", "imgs": ["pres2/p_06.jpg?v=8", "nk/st_torch4-0.jpg?v=14", "nk/st_torch4-4.jpg?v=14", "nk/st_torch4-2.jpg?v=14", "nk/st_torch4-3.jpg?v=14", "nk/st_torch4-5.jpg?v=14", "nk/st_torch4-1.jpg?v=14"], "sizes": ["US 9.5 · COL 42"], "desc": "Nike Air Max Torch 4 color Atmosphere Grey/Black/University Red, el clásico runner con cámara de aire Max Air en el talón. Nuevos en caja, comprados en Nueva York. No se consiguen en Nike Colombia. Código Nike: CI2202-001."}, {"id": "conjunto-jordan-sport-jam", "name": "Conjunto Jordan Sport JAM rojo", "brand": "Jordan", "cat": "conjuntos", "price": 749900, "antes": 799800, "imgs": ["pres/conj_jam.jpg?v=8", "nk/jam_chaqueta-0.jpg?v=14", "nk/jam-0.jpg?v=14", "nk/jam_chaqueta-1.jpg?v=14", "nk/jam-1.jpg?v=14"], "sizes": ["XL"], "agotado": false, "ultima": false, "tag": "Conjunto", "desc": "Chaqueta + sudadera Jordan Sport JAM University Red/Black, nuevos con etiqueta. Por separado suman $799.800: con el conjunto te ahorras $49.900. Solo la chaqueta vale $594.950 en Nike Colombia. Y como son 2 prendas, el envío te sale gratis."}, {"id": "conjunto-nike-club-fleece-gris", "name": "Conjunto Nike Club Fleece gris claro (saco + sudadera)", "brand": "Nike", "cat": "conjuntos", "price": 349900, "antes": 399800, "ref": null, "agotado": false, "ultima": true, "tag": "Conjunto", "imgs": ["pres/conj_fleece.jpg?v=8", "nk/conj_club_gris-0.jpg?v=14", "nk/club_hood_gris-0.jpg?v=14", "nk/club_hood_gris-video.mp4", "nk/bungee_gris-1.jpg?v=14", "nk/club_hood_gris-3.jpg?v=14", "nk/bungee_gris-0.jpg?v=14", "nk/club_hood_gris-1.jpg?v=14", "nk/bungee_gris-2.jpg?v=14"], "sizes": ["L"], "desc": "Conjunto Nike Club Fleece en gris claro (Birch Heather): saco con capota (FN3859-051) + sudadera de bota ancha con cordón (IF0488-051). Felpa suave por dentro, el combo perfecto para frío o para estar cómodo con estilo. Todo nuevo con etiqueta, comprado en Nueva York. Por separado suman $399.800: con el conjunto te ahorras $49.900, y como son 2 prendas el envío te sale gratis. Talla L en las dos prendas."}, {"id": "conjunto-adidas-firebird-gris", "name": "Conjunto adidas: camiseta Mundial USA 94 gris + short Firebird de jean", "brand": "adidas", "cat": "conjuntos", "price": 339900, "antes": 389900, "ref": null, "agotado": false, "ultima": false, "tag": "Conjunto", "imgs": ["pres/conj_adidas_gris.jpg?v=8", "nk/adi_real_gris_front.jpg?v=14", "nk/adi_real_gris_back.jpg?v=14", "nk/adi_real_gris_2.jpg?v=14", "shop/camiseta-adidas-fifa-world-cup-26-strik-0.jpg?v=14", "shop/sin-titulo-4sept_23-11-38-0.jpg?v=14", "shop/sin-titulo-4sept_23-11-38-1.jpg?v=14"], "sizes": ["Camiseta XL", "Camiseta L", "Camiseta M"], "desc": "Conjunto adidas Originals: camiseta Mundial USA 94 gris + short Firebird de jean con las 3 franjas a los lados. Todo nuevo con etiqueta, comprado en tienda adidas de Nueva York. Por separado suman $389.900: con el conjunto te ahorras $50.000, y como son 2 prendas el envío te sale gratis. Elige la talla de la camiseta aquí; la del short (34, 36 o 38) me la dices por DM. Fotos reales de la ropa que tenemos."}, {"id": "conjunto-adidas-firebird-blanca", "name": "Conjunto adidas: camiseta 98 blanca de rayas azules + short Firebird de jean", "brand": "adidas", "cat": "conjuntos", "price": 339900, "antes": 389900, "ref": null, "agotado": false, "ultima": false, "tag": "Conjunto", "imgs": ["pres/conj_adidas_blanca.jpg?v=8", "nk/adi_real_blanca.jpg?v=14", "shop/sin-titulo-4sept_23-38-04-0.jpg?v=14", "shop/sin-titulo-4sept_23-11-38-0.jpg?v=14", "shop/sin-titulo-4sept_23-11-38-1.jpg?v=14"], "sizes": ["Camiseta XL"], "desc": "Conjunto adidas Originals: camiseta 98 blanca de rayas azules + short Firebird de jean con las 3 franjas a los lados. Todo nuevo con etiqueta, comprado en tienda adidas de Nueva York. Por separado suman $389.900: con el conjunto te ahorras $50.000, y como son 2 prendas el envío te sale gratis. Elige la talla de la camiseta aquí; la del short (34, 36 o 38) me la dices por DM. Fotos reales de la ropa que tenemos."}, {"id": "conjunto-adidas-firebird-crema", "name": "Conjunto adidas: camiseta de franjas crema y verde + short Firebird de jean", "brand": "adidas", "cat": "conjuntos", "price": 339900, "antes": 389900, "ref": null, "agotado": false, "ultima": false, "tag": "Conjunto", "imgs": ["pres/conj_adidas_crema.jpg?v=8", "nk/adi_real_crema.jpg?v=14", "shop/camiseta-adidas-originals-de-franjas-0.jpg?v=14", "shop/sin-titulo-4sept_23-11-38-0.jpg?v=14", "shop/sin-titulo-4sept_23-11-38-1.jpg?v=14"], "sizes": ["Camiseta XL"], "desc": "Conjunto adidas Originals: camiseta de franjas crema y verde + short Firebird de jean con las 3 franjas a los lados. Todo nuevo con etiqueta, comprado en tienda adidas de Nueva York. Por separado suman $389.900: con el conjunto te ahorras $50.000, y como son 2 prendas el envío te sale gratis. Elige la talla de la camiseta aquí; la del short (34, 36 o 38) me la dices por DM. Fotos reales de la ropa que tenemos."}, {"id": "jordan-sport-jam-chaqueta", "name": "Chaqueta Jordan Sport JAM roja", "brand": "Jordan", "cat": "buzos", "price": 529900, "antes": null, "imgs": ["pres/jordan_jamchaqueta.jpg?v=8", "nk/jam_chaqueta-0.jpg?v=14", "nk/jam_chaqueta-1.jpg?v=14", "nk/jam_chaqueta-2.jpg?v=14"], "sizes": ["L", "XL"], "agotado": false, "ultima": false, "tag": "-11% vs Nike Colombia", "desc": "Chaqueta Jordan Sport JAM University Red/Black, nueva con etiqueta. En Nike Colombia vale $594.950: aquí te ahorras $65.050. Combínala con la sudadera Sport JAM o llévate el conjunto completo.", "ref": 594950}, {"id": "jordan-sport-jam-pantalon", "name": "Sudadera Jordan Sport JAM roja", "brand": "Jordan", "cat": "pantalones", "price": 269900, "antes": null, "imgs": ["pres/jordan_jampant.jpg?v=8", "nk/jam-0.jpg?v=14", "nk/jam-1.jpg?v=14", "nk/jam-2.jpg?v=14"], "sizes": ["L", "XL"], "agotado": false, "ultima": false, "tag": "Nuevo", "desc": "Sudadera Jordan Sport JAM University Red/Black, nueva con etiqueta. Comprado en tienda Nike en Nueva York. Hay 3: 2 en talla XL y 1 en talla L. Código Nike: IM7619-657."}, {"id": "jordan-brooklyn-pantalon-cafe", "name": "Sudadera Jordan Brooklyn café", "brand": "Jordan", "cat": "pantalones", "price": 199900, "antes": null, "ref": null, "agotado": false, "ultima": true, "tag": "Nuevo", "imgs": ["pres/jordan_brooklyn.jpg?v=8", "nk/brooklyn_pant-0.jpg?v=14", "nk/brooklyn_pant-video.mp4", "nk/brooklyn_pant-1.jpg?v=14", "nk/brooklyn_pant-2.jpg?v=14", "nk/brooklyn_pant-3.jpg?v=14", "nk/brooklyn_pant-4.jpg?v=14"], "sizes": ["XL"], "desc": "Sudadera jogger Jordan Brooklyn de felpa, color café (Palomino) con el Jumpman rojo bordado. Nuevo con etiqueta, comprado en Nueva York. Código Nike: IM8906-274."}, {"id": "air-jordan-howard-pantalon", "name": "Sudadera Air Jordan x Howard University", "brand": "Jordan", "cat": "pantalones", "price": 369900, "antes": null, "ref": null, "agotado": false, "ultima": true, "tag": "Nuevo", "imgs": ["pres/jordan_howard.jpg?v=8", "nk/howard_pant-0.jpg?v=14", "nk/howard_pant-1.jpg?v=14", "nk/howard_pant-2.jpg?v=14", "nk/howard_pant-3.jpg?v=14", "nk/howard_pant-4.jpg?v=14"], "sizes": ["L"], "desc": "Sudadera Air Jordan x Howard University, edición especial, color café claro con franja crema a los lados y bota recta ancha. Nuevo con etiqueta. En Nike EE. UU. vale $150 dólares. Código Nike: IR0246-223."}, {"id": "nike-club-bungee-pantalon-gris", "name": "Sudadera Nike Club Fleece gris claro", "brand": "Nike", "cat": "pantalones", "price": 199900, "antes": null, "ref": null, "agotado": false, "ultima": true, "tag": "Nuevo", "imgs": ["pres2/p_07.jpg?v=8", "nk/bungee_gris-0.jpg?v=14", "nk/bungee_gris-video.mp4", "nk/bungee_gris-1.jpg?v=14", "nk/bungee_gris-2.jpg?v=14", "nk/bungee_gris-3.jpg?v=14", "nk/bungee_gris-4.jpg?v=14"], "sizes": ["L"], "desc": "Sudadera Nike Sportswear Club Fleece gris claro (Birch Heather), bota ancha con cordón elástico abajo para ajustarlo. Felpa suave por dentro. Nuevo con etiqueta. Código Nike: IF0488-051."}, {"id": "nike-club-hoodie-negro", "name": "Saco Nike Club Fleece con capota negro", "brand": "Nike", "cat": "buzos", "price": 199900, "antes": null, "ref": null, "agotado": false, "ultima": false, "tag": "Nuevo", "imgs": ["pres2/p_08.jpg?v=8", "nk/club_hood_negro-0.jpg?v=14", "nk/club_hood_negro-video.mp4", "nk/club_hood_negro-1.jpg?v=14", "nk/club_hood_negro-2.jpg?v=14", "nk/club_hood_negro-3.jpg?v=14", "nk/club_hood_negro-4.jpg?v=14"], "sizes": ["L", "XL"], "desc": "Saco con capota Nike Club Fleece negro con el logo Nike bordado en blanco. Felpa suave por dentro, bolsillo canguro. Nuevo con etiqueta. Código Nike: FN3859-010."}, {"id": "nike-club-hoodie-gris", "name": "Saco Nike Club Fleece con capota gris claro", "brand": "Nike", "cat": "buzos", "price": 199900, "antes": null, "ref": null, "agotado": false, "ultima": true, "tag": "Nuevo", "imgs": ["pres2/p_09.jpg?v=8", "nk/club_hood_gris-0.jpg?v=14", "nk/club_hood_gris-video.mp4", "nk/club_hood_gris-1.jpg?v=14", "nk/club_hood_gris-2.jpg?v=14", "nk/club_hood_gris-3.jpg?v=14", "nk/club_hood_gris-4.jpg?v=14"], "sizes": ["L"], "desc": "Saco con capota Nike Club Fleece gris claro (Birch Heather) con el logo bordado. Felpa suave por dentro, bolsillo canguro. Nuevo con etiqueta. Código Nike: FN3859-051."}, {"id": "nike-solo-swoosh-cierre-verde", "name": "Saco Nike Solo Swoosh con cierre verde", "brand": "Nike", "cat": "buzos", "price": 269900, "antes": null, "ref": null, "agotado": false, "ultima": true, "tag": "Nuevo", "imgs": ["pres2/p_10.jpg?v=8", "nk/solo_swoosh_verde-1.jpg?v=14", "nk/solo_swoosh_verde-0.jpg?v=14", "nk/solo_swoosh_verde-2.jpg?v=14"], "sizes": ["L"], "desc": "Saco Nike Solo Swoosh con capota y cierre completo, color verde (Clay Green), felpa gruesa y suave por dentro, corte amplio. Swoosh bordado en el pecho. Nuevo con etiqueta, comprado en Nueva York. En EE. UU. vale $95 dólares. Código Nike: HV1084-364."}, {"id": "nike-premium-essentials-jdi-gris", "name": "Camiseta Nike Premium Essentials \"Just Do It\" gris oscuro", "brand": "Nike", "cat": "camisetas", "price": 149900, "ultima": false, "sizes": ["M", "L"], "imgs": ["pres2/p_11.jpg?v=8", "nk/pe_jdi_gris-0.jpg?v=14", "nk/pe_jdi_gris-video.mp4", "nk/pe_jdi_gris-1.jpg?v=14", "nk/pe_jdi_gris-2.jpg?v=14", "nk/pe_jdi_gris-3.jpg?v=14", "nk/pe_jdi_gris-4.jpg?v=14"], "desc": "Camiseta Nike Sportswear Premium Essentials en gris oscuro lavado (Newsprint), con \"Just Do It\" bordado en el pecho. Algodón grueso, corte amplio. Nueva con etiqueta. Código Nike: IM9343-005.", "agotado": false, "tag": "Nuevo", "antes": null, "ref": null}, {"id": "jordan-sport-bulls", "name": "Camiseta Jordan Sport Bulls 45", "brand": "Jordan", "cat": "camisetas", "price": 149900, "ultima": true, "sizes": ["L"], "imgs": ["pres/jordan_bulls.jpg?v=8", "nk/jordan_bulls-0.jpg?v=14", "nk/jordan_bulls-video.mp4", "nk/jordan_bulls-1.jpg?v=14", "nk/jordan_bulls-2.jpg?v=14", "nk/jordan_bulls-3.jpg?v=14", "nk/jordan_bulls-4.jpg?v=14"], "desc": "Camiseta Jordan Sport Dri-FIT negra con el gráfico grande de Michael Jordan con la 45 de los Bulls y el Jumpman rojo en la manga. Nueva con etiqueta. Código Nike: IV4900-011.", "agotado": false, "tag": "Nuevo", "antes": null, "ref": null}, {"id": "jordan-sport-negra-grafica", "name": "Camiseta Jordan Sport negra con gráfico de Jordan", "brand": "Jordan", "cat": "camisetas", "price": 139900, "antes": null, "ref": null, "agotado": false, "ultima": true, "tag": "Nuevo", "imgs": ["pres/jordan_sportnegra.jpg?v=8", "nk/jordan_sport_negra-0.jpg?v=14", "nk/jordan_sport_negra-5.jpg?v=14", "nk/jordan_sport_negra-2.jpg?v=14", "nk/jordan_sport_negra-1.jpg?v=14", "nk/jordan_sport_negra-3.jpg?v=14", "nk/jordan_sport_negra-4.jpg?v=14"], "sizes": ["L"], "desc": "Camiseta Jordan Sport negra con el gráfico grande de Michael Jordan en colores y el logo \"Jordan\" metalizado al frente; Jumpman blanco atrás en el cuello. Nueva con etiqueta, comprada en Nueva York. Código Nike: HJ2348-010."}, {"id": "jordan-flight-negra-oversize", "name": "Camiseta Jordan Flight negra oversize", "brand": "Jordan", "cat": "camisetas", "price": 129900, "ultima": true, "sizes": ["S"], "imgs": ["pres/jordan_flightnegra.jpg?v=8", "nk/jordan_flight_negra-0.jpg?v=14", "nk/jordan_flight_negra-video.mp4", "nk/jordan_flight_negra-1.jpg?v=14", "nk/jordan_flight_negra-2.jpg?v=14", "nk/jordan_flight_negra-3.jpg?v=14", "nk/jordan_flight_negra-4.jpg?v=14"], "desc": "Camiseta Jordan Flight negra de corte oversize, con \"JORDAN\" en relieve negro sobre negro y etiqueta roja en el costado. Nueva con etiqueta. Código Nike: IO0049-010.", "agotado": false, "tag": "Nuevo", "antes": null, "ref": null}, {"id": "nike-sportswear-mineral-slate", "name": "Camiseta Nike Sportswear playa verde azulado", "brand": "Nike", "cat": "camisetas", "price": 119900, "ultima": true, "sizes": ["L"], "imgs": ["pres2/p_12.jpg?v=8", "nk/mineral_slate-0.jpg?v=14", "nk/mineral_slate-1.jpg?v=14", "nk/mineral_slate-2.jpg?v=14", "nk/mineral_slate-3.jpg?v=14"], "desc": "Camiseta Nike Sportswear color Mineral Slate (verde azulado), con gráfico grande de casa de playa con palmeras atrás y logo pequeño adelante. Nueva con etiqueta. Código Nike: IR4594-384.", "agotado": false, "tag": "Nuevo", "antes": null, "ref": null}, {"id": "nike-max90-max-heat", "name": "Camiseta Nike Max90 \"Max Heat\" Air Max 95", "brand": "Nike", "cat": "camisetas", "price": 119900, "antes": null, "ref": null, "agotado": false, "ultima": true, "tag": "Nuevo", "imgs": ["pres2/p_13.jpg?v=8", "nk/max_heat-0.jpg?v=14", "nk/max_heat-1.jpg?v=14", "nk/max_heat-2.jpg?v=14", "nk/max_heat-3.jpg?v=14"], "sizes": ["XL"], "desc": "Camiseta Nike Sportswear Max90 blanca con el gráfico \"MAX HEAT – A fire you can't put out\": un Air Max 95 en llamas atrás. Algodón grueso, corte amplio. Nueva con etiqueta. Código Nike: HQ9256-100."}, {"id": "nike-griffey-max90", "name": "Camiseta Nike Max90 Ken Griffey Jr.", "brand": "Nike", "cat": "camisetas", "price": 149900, "antes": null, "imgs": ["pres2/p_14.jpg?v=8", "nk/griffey-0.jpg?v=14", "nk/griffey-video.mp4", "nk/griffey-1.jpg?v=14", "nk/griffey-2.jpg?v=14"], "sizes": ["L", "XL"], "agotado": false, "ultima": false, "tag": "Nuevo", "desc": "Camiseta Nike Sportswear Max90 de Ken Griffey Jr., negra, corte amplio. Nueva con etiqueta.", "ref": null}, {"id": "nike-max90-gris", "name": "Camiseta Nike Max90 gris", "brand": "Nike", "cat": "camisetas", "price": 149900, "antes": null, "imgs": ["pres2/p_15.jpg?v=8", "nk/max90_gris-0.jpg?v=14", "nk/max90_gris-video.mp4", "nk/max90_gris-1.jpg?v=14", "nk/max90_gris-2.jpg?v=14"], "sizes": ["XL"], "agotado": false, "ultima": true, "tag": "Nuevo", "desc": "Camiseta Nike Sportswear Max90 College Grey, corte amplio y tela gruesa. Nueva con etiqueta.", "ref": null}, {"id": "nike-premium-essentials", "name": "Camiseta Nike Premium Essentials verde", "brand": "Nike", "cat": "camisetas", "price": 139900, "antes": null, "imgs": ["pres2/p_16.jpg?v=8", "nk/premium_ess-0.jpg?v=14", "nk/premium_ess-video.mp4", "nk/premium_ess-1.jpg?v=14", "nk/premium_ess-2.jpg?v=14"], "sizes": ["L"], "agotado": false, "ultima": true, "tag": "Nuevo", "desc": "Camiseta Nike Sportswear Premium Essentials color Newsprint. En Nike Colombia esta línea vale $209.950.", "ref": 209950, "refTxt": "Nike Colombia"}, {"id": "nike-premium-essentials-blanca", "name": "Camiseta Nike Premium Essentials blanca", "brand": "Nike", "cat": "camisetas", "price": 139900, "antes": null, "ref": null, "agotado": false, "ultima": true, "tag": "Nuevo", "imgs": ["pres2/p_17.jpg?v=8", "nk/pe_blanca-0.jpg?v=14", "nk/pe_blanca-1.jpg?v=14", "nk/pe_blanca-2.jpg?v=14", "nk/pe_blanca-3.jpg?v=14", "nk/pe_blanca-4.jpg?v=14"], "sizes": ["XL"], "desc": "Camiseta Nike Sportswear Premium Essentials blanca, algodón grueso y corte amplio, logo Nike bordado en el pecho. Nueva con etiqueta. Código Nike: DO7392-101."}, {"id": "nike-sportswear-negra-grafica", "name": "Camiseta Nike negra estampada", "brand": "Nike", "cat": "camisetas", "price": 99900, "antes": null, "imgs": ["pres2/p_18.jpg?v=8", "nk/nsw_negra-0.jpg?v=14", "nk/nsw_negra-video.mp4", "nk/nsw_negra-1.jpg?v=14", "nk/nsw_negra-2.jpg?v=14"], "sizes": ["L", "XL"], "agotado": false, "ultima": false, "tag": "Nuevo", "desc": "Camiseta Nike Sportswear negra con estampado frontal. Nueva con etiqueta.", "ref": null}, {"id": "nike-pegasus-just-do-it", "name": "Camiseta Nike Pegasus \"Just Do It\" negra", "brand": "Nike", "cat": "camisetas", "price": 139900, "antes": null, "ref": null, "agotado": false, "ultima": false, "tag": "Nuevo", "imgs": ["pres2/p_19.jpg?v=8", "nk/pegasus_tee-0.jpg?v=14", "nk/pegasus_tee-2.jpg?v=14"], "sizes": ["L", "XL"], "desc": "Camiseta Nike Sportswear negra oversize con el Pegasus (caballo con alas) en llamas, celebrando los 40 años del Pegasus, y \"Just Do It\" abajo. Algodón grueso. Nueva con etiqueta. Código Nike: FJ1089-010."}, {"id": "nike-morehouse", "name": "Camiseta Nike College Morehouse", "brand": "Nike", "cat": "camisetas", "price": 139900, "antes": null, "imgs": ["pres2/p_20.jpg?v=8", "nk/morehouse-0.jpg?v=14"], "sizes": ["XL"], "agotado": false, "ultima": true, "tag": "Nuevo", "desc": "Camiseta Nike College de Morehouse, negra. Nueva con etiqueta."}, {"id": "sin-titulo-4sept_23-11-38", "name": "Short adidas Firebird de jean", "brand": "adidas", "cat": "shorts", "price": 250000, "antes": null, "imgs": ["pres2/p_21.jpg?v=8", "shop/sin-titulo-4sept_23-11-38-0.jpg?v=14", "shop/sin-titulo-4sept_23-11-38-1.jpg?v=14", "shop/sin-titulo-4sept_23-11-38-2.jpg?v=14", "nk/adi_real_gris_front.jpg?v=14"], "sizes": ["38", "36", "34"], "disponibles": ["38", "36", "34"], "agotado": false, "desc": "adidas Firebird Adicolor Denim Jorts KS4975 — Hombre  \n  Dale un toque clásico y urbano a tu estilo con los   adidas Firebird Denim Jorts  . Estos shorts de denim presentan el icónico diseño Firebird con las   tres franjas laterales  , combinando el estilo deportivo de adidas con una estética streetwear moderna. Código adidas: KS4975.", "tag": "-30% vs adidas Colombia", "v": {"38": 45779659063405, "36": 45779659096173, "34": 45779659128941}, "ultima": false, "ref": 359955, "refTxt": "adidas Colombia"}, {"id": "short-adidas-firebird-indigo", "name": "Short adidas Firebird de jean azul oscuro", "brand": "adidas", "cat": "shorts", "price": 289900, "antes": null, "imgs": ["pres2/p_22.jpg?v=8", "nk/firebird_indigo-0.jpg?v=14", "nk/firebird_indigo-1.jpg?v=14", "nk/firebird_indigo-3.jpg?v=14", "nk/firebird_indigo-2.jpg?v=14", "nk/firebird_indigo-5.jpg?v=14"], "sizes": ["34", "36"], "agotado": false, "desc": "adidas Firebird Adicolor Denim Jorts KS6882, azul oscuro (Indigo Denim). Tiro medio, pierna recta y las tres franjas a los lados. Nuevos con etiqueta, comprados en Nueva York. En adidas Colombia valen $399.950: aquí te ahorras $110.050. Código adidas: KS6882.", "tag": "-28% vs adidas Colombia", "ultima": false, "ref": 399950, "refTxt": "adidas Colombia"}, {"id": "sin-titulo-4sept_23-38-04", "name": "Camiseta adidas 98 blanca", "brand": "adidas", "cat": "camisetas", "price": 139900, "antes": null, "imgs": ["pres2/p_23.jpg?v=8", "shop/sin-titulo-4sept_23-38-04-0.jpg?v=14", "shop/sin-titulo-4sept_23-38-04-1.jpg?v=14", "shop/sin-titulo-4sept_23-38-04-2.jpg?v=14", "nk/adi_real_blanca.jpg?v=14"], "sizes": ["XL"], "disponibles": ["Xl"], "agotado": false, "desc": "adidas Originals 98 — Camiseta de Franjas para Hombre  \n  Camiseta adidas Originals de estilo retro y urbano, confeccionada en un tono   crema   con detalles en   verde  . Cuenta con el icónico   Trefoil   en el pecho y las clásicas franjas que atraviesan la parte frontal, creando un look inspirado en el estilo deportivo vintage.", "tag": null, "v": {"XL": 45780028981357}, "ultima": true}, {"id": "camiseta-adidas-fifa-world-cup-26™-striker-gris", "name": "Camiseta adidas Mundial 26 gris", "brand": "adidas", "cat": "camisetas", "price": 139900, "antes": null, "imgs": ["pres2/p_24.jpg?v=8", "shop/camiseta-adidas-fifa-world-cup-26-strik-0.jpg?v=14", "shop/camiseta-adidas-fifa-world-cup-26-strik-1.jpg?v=14", "shop/camiseta-adidas-fifa-world-cup-26-strik-2.jpg?v=14", "shop/camiseta-adidas-fifa-world-cup-26-strik-3.jpg?v=14", "nk/adi_real_gris_front.jpg?v=14", "nk/adi_real_gris_back.jpg?v=14", "nk/adi_real_gris_2.jpg?v=14"], "sizes": ["XL", "L", "M"], "disponibles": ["XL", "L", "M"], "agotado": false, "desc": "Camiseta adidas FIFA World Cup 26™ Striker — Gris  \n  Camiseta adidas inspirada en el   Mundial de Estados Unidos 1994  , con un diseño retro que rinde homenaje a la historia del fútbol. Cuenta con el   logo Trefoil de adidas en el pecho   y un llamativo   gráfico inspirado en el Mundial en la parte posterior  .", "tag": null, "v": {"XL": 45780071317613, "L": 45780071350381, "M": 45780071383149}, "ultima": false}, {"id": "gorra-new-era-dodgers-denim-negra", "name": "Gorra New Era Dodgers LA \"Denim Bling\" negra", "brand": "New Era", "cat": "gorras", "price": 169900, "antes": null, "ref": null, "agotado": false, "ultima": false, "tag": "Nuevo", "imgs": ["nk/pres_gorras_04.jpg?v=8", "nk/la_studio-1.jpg?v=14", "nk/la_studio-0.jpg?v=14", "nk/la_studio-2.jpg?v=14", "nk/la_studio-3.jpg?v=14", "nk/la_denim-4.jpg?v=14", "nk/flyer_dodgers.jpg?v=14"], "sizes": ["Única (snapback ajustable)"], "desc": "Gorra New Era MLB \"Denim Bling\" de los Los Angeles Dodgers: tela denim negra con hilo brillante y el logo LA bordado en blanco. Modelo 9FIFTY A-Frame, visera curva, broche ajustable atrás (sirve para cualquier talla). Nueva con stickers, comprada en Foot Locker de Nueva York."}, {"id": "gorra-new-era-mets-roja-negra", "name": "Gorra New Era Mets roja y negra 9FIFTY A-Frame", "brand": "New Era", "cat": "gorras", "price": 219900, "antes": null, "ref": null, "agotado": false, "ultima": false, "tag": "Nuevo", "imgs": ["nk/pres_gorras_05.jpg?v=8", "nk/mets_studio-1.jpg?v=14", "nk/mets_studio-0.jpg?v=14", "nk/mets_studio-2.jpg?v=14", "nk/mets_studio-3.jpg?v=14", "nk/mets_rn-3.jpg?v=14", "nk/flyer_mets.jpg?v=14"], "sizes": ["Única (snapback ajustable)"], "desc": "Gorra New Era 9FIFTY A-Frame de los New York Mets: copa roja, visera negra precurvada, logo NY negro bordado en 3D y parche lateral de la Serie Mundial de 1969 con el estadio. Broche ajustable atrás (sirve para cualquier talla) y visera gris por debajo. Original, nueva, comprada en Nueva York."}, {"id": "gorra-new-era-dodgers-roja-59fifty", "name": "Gorra New Era Dodgers LA roja 59FIFTY", "brand": "New Era", "cat": "gorras", "price": 219900, "antes": null, "ref": null, "agotado": false, "ultima": true, "tag": "Nuevo", "imgs": ["nk/pres_gorras_06.jpg?v=8", "nk/lared_studio-0.jpg?v=14", "nk/lared_studio-2.jpg?v=14", "nk/lared_studio-1.jpg?v=14", "nk/lared_studio-4.jpg?v=14", "nk/lared_studio-3.jpg?v=14", "nk/lared_studio-5.jpg?v=14"], "sizes": ["7 1/4"], "desc": "Gorra New Era 59FIFTY de los Los Angeles Dodgers en rojo (Scarlet) con el logo LA bordado en blanco. Es cerrada (fitted), visera plana y debajo de la visera gris. Talla 7 1/4 (unos 57,7 cm de cabeza), una sola. Original, nueva con stickers, comprada en Nueva York."}, {"id": "gorra-coach-signature-1", "name": "Gorra Coach Signature negra", "brand": "Coach", "cat": "gorras", "price": 379900, "antes": null, "imgs": ["nk/pres_gorras_02.jpg?v=8", "nk/coach_negra_st-0.jpg?v=14", "nk/coach_negra_st-2.jpg?v=14", "nk/coach_ccn92_chr_a91.jpg?v=14", "nk/coach_ccn92_chr_a99.jpg?v=14", "shop/gorra-coach-signature-1-1.jpg?v=14", "nk/flyer_coach_negra.jpg?v=14"], "sizes": ["Única"], "disponibles": ["Regular"], "agotado": false, "desc": "Gorra Coach Signature — Negro/Gris  \n  Gorra Coach de estilo clásico y urbano, confeccionada con el icónico   estampado Signature   en tonos negro y gris. Su diseño incorpora   visera curva   y una   correa trasera ajustable con varios orificios  , permitiendo encontrar el ajuste ideal de forma cómoda. Pieza exclusiva de Coach, la marca de lujo de Nueva York: no se consigue en tiendas Coach en Colombia.", "tag": "Exclusivo", "v": {"Única": 45780058636397}, "ultima": false, "ref": null}, {"id": "gorra-coach-signature", "name": "Gorra Coach Signature café", "brand": "Coach", "cat": "gorras", "price": 379900, "antes": null, "imgs": ["nk/pres_gorras_03.jpg?v=8", "nk/coach_cafe_st-0.jpg?v=14", "nk/coach_cafe_st-1.jpg?v=14", "nk/coach_cw766_kha_a91.jpg?v=14", "nk/coach_cw766_kha_a96.jpg?v=14", "shop/gorra-coach-signature-1.jpg?v=14", "shop/gorra-coach-signature-2.jpg?v=14", "nk/flyer_coach_cafe.jpg?v=14"], "sizes": ["Única"], "disponibles": ["Café"], "agotado": false, "desc": "Gorra Coach con el icónico   estampado Signature   en tonos café y beige. Cuenta con una   correa trasera ajustable con varios orificios  , que permite adaptar fácilmente el ajuste a diferentes tamaños de cabeza. Su diseño clásico y versátil es perfecto para complementar cualquier outfit casual o urbano. Pieza exclusiva de Coach, la marca de lujo de Nueva York: no se consigue en tiendas Coach en Colombia.", "tag": "Exclusivo", "v": {"Única": 45780036976749}, "ultima": false, "ref": null}, {"id": "camiseta-adidas-originals-de-franjas", "name": "Camiseta adidas franjas crema", "brand": "adidas", "cat": "camisetas", "price": 139900, "antes": null, "imgs": ["pres2/p_25.jpg?v=8", "shop/camiseta-adidas-originals-de-franjas-0.jpg?v=14", "shop/camiseta-adidas-originals-de-franjas-1.jpg?v=14", "shop/camiseta-adidas-originals-de-franjas-2.jpg?v=14", "shop/camiseta-adidas-originals-de-franjas-3.jpg?v=14", "nk/adi_real_crema.jpg?v=14"], "sizes": ["XL"], "disponibles": ["XL"], "agotado": false, "desc": "Camiseta adidas Originals de Franjas — Hombre  \n  Camiseta adidas Originals de estilo retro y urbano, confeccionada en un tono crema con   franjas verdes en el pecho   y el clásico   logo Trefoil   de adidas. Su diseño sencillo y versátil es perfecto para combinar con jeans, shorts o pantalones deportivos.", "tag": null, "v": {"XL": 45779831783533}, "ultima": true}, {"id": "jordan-flight-jersey-estampado", "name": "Jersey Jordan Flight manga larga estampado", "brand": "Jordan", "cat": "manga-larga", "price": 229900, "ultima": false, "sizes": ["XL"], "imgs": ["pres/jordan_jersey.jpg?v=8", "nk/jf_jersey_estampado-0.jpg?v=14", "nk/jf_jersey_estampado-video.mp4", "nk/jf_jersey_estampado-1.jpg?v=14", "nk/jf_jersey_estampado-2.jpg?v=14", "nk/jf_jersey_estampado-3.jpg?v=14"], "desc": "Jersey Jordan Flight de manga larga con estampado de fotos de Michael Jordan por todo el frente y la espalda. Nuevo con etiqueta, comprado en Nueva York. Hay 2 en talla XL. Código Nike: IF1831-010.", "agotado": false, "tag": "Nuevo", "antes": null, "ref": null}, {"id": "nike-sportswear-long-sleeve-t-shirt-2", "name": "Camiseta Nike manga larga blanca", "brand": "Nike", "cat": "manga-larga", "price": 149000, "antes": null, "imgs": ["pres2/p_26.jpg?v=8", "shop/nike-sportswear-long-sleeve-t-shirt-2-0.jpg?v=14", "shop/nike-sportswear-long-sleeve-t-shirt-2-1.jpg?v=14", "shop/nike-sportswear-long-sleeve-t-shirt-2-2.jpg?v=14"], "sizes": ["M", "XL"], "disponibles": ["XL"], "agotado": false, "desc": "Nike Sportswear Long-Sleeve T-Shirt 🤍  \n  Camiseta Nike de manga larga en color blanco, con   corte Loose Fit   para un estilo amplio y cómodo. Diseño minimalista con logo Nike en el pecho y puños acanalados. Código Nike: DO7390-100.", "tag": null, "v": {"XL": 45767252934765}, "ultima": false, "ref": null}, {"id": "adidas-originals-archive-collar-engineered-jersey-1", "name": "Jersey adidas Archive verde", "brand": "adidas", "cat": "jerseys", "price": 170000, "antes": null, "imgs": ["pres2/p_27.jpg?v=8", "shop/adidas-originals-archive-collar-engineer-0.jpg?v=14", "shop/adidas-originals-archive-collar-engineer-1.jpg?v=14", "shop/adidas-originals-archive-collar-engineer-2.jpg?v=14"], "sizes": ["L", "XL"], "disponibles": ["L", "Xl"], "agotado": false, "desc": "adidas Originals Archive Collar Engineered Jersey 💚  \n   \n  Camiseta adidas Originals en color Collegiate Green, con diseño inspirado en los jerseys deportivos clásicos. Cuenta con cuello tipo polo, detalles en blanco y las icónicas 3-Stripes en las mangas. Código adidas: KE3582.", "tag": null, "v": {"L": 45767249035373, "XL": 45767249068141}, "ultima": false}, {"id": "adidas-originals-archive-collar-engineered-jersey", "name": "Jersey adidas Archive negro", "brand": "adidas", "cat": "jerseys", "price": 170000, "antes": null, "imgs": ["pres2/p_28.jpg?v=8", "shop/jersey-negra-0.jpg?v=14", "shop/jersey-negra-1.jpg?v=14", "shop/jersey-negra-2.jpg?v=14"], "sizes": ["2XL"], "disponibles": ["2XL"], "agotado": false, "desc": "adidas Archive Collar Engineered Jersey 🖤  \n  Camiseta tipo jersey de   adidas Originals  , inspirada en el estilo deportivo clásico. Diseño negro con   cuello tipo polo en contraste  , escote en V y las icónicas   3-Stripes   en las mangas. El tejido doble ofrece una sensación ligera y cómoda, perfecta para un look   retro / streetwear  . Código adidas: KE3584.", "tag": null, "v": {"2XL": 45767245594733}, "ultima": true}, {"id": "jordan-flight-men-s-long-sleeve-t-shirt", "name": "Camiseta Jordan Flight manga larga", "brand": "Jordan", "cat": "manga-larga", "price": 132900, "antes": null, "imgs": ["pres/jordan_lsblanca.jpg?v=8", "nk/jf_ls_blanca-0.jpg?v=14", "nk/jf_ls_blanca-1.jpg?v=14", "nk/jf_ls_blanca-2.jpg?v=14"], "sizes": ["L"], "disponibles": ["L"], "agotado": false, "desc": "Jordan Flight Long-Sleeve T-Shirt 🤍  \n  Camiseta   Jordan Flight de manga larga  , en color blanco, con el icónico   Jumpman   en diseño gráfico multicolor al frente y detalle gráfico en la manga. Su estilo clásico con inspiración streetwear la hace perfecta para combinar con jeans, cargos o sneakers Jordan. Código Nike: FB7455-100.", "tag": null, "v": {"L": 45767242219629}, "ultima": true}, {"id": "jordan-flight-essentials-t-shirt", "name": "Camiseta Jordan Flight Essentials", "brand": "Jordan", "cat": "camisetas", "price": 139900, "antes": null, "imgs": ["pres/jordan_fegris.jpg?v=8", "nk/jfe_gris-0.jpg?v=14", "nk/jfe_gris-1.jpg?v=14", "nk/jfe_gris-2.jpg?v=14"], "sizes": ["M"], "disponibles": ["M"], "agotado": false, "desc": "Jordan Flight Essentials T-Shirt 🩶  \n  Camiseta   Jordan Flight Essentials   en color   gris jaspeado (Dark Heather Grey)  . Diseño moderno de corte   oversized  , con cuello redondo y el icónico   Jumpman   en parche al frente. Código Nike: DZ7313-091.", "tag": null, "v": {"M": 45767205519469}, "ultima": true, "ref": null}, {"id": "sin-titulo-2sept_21-19-32", "name": "Camiseta Nike Club roja", "brand": "Nike", "cat": "camisetas", "price": 110000, "antes": null, "imgs": ["pres2/p_29.jpg?v=8", "shop/sin-titulo-2sept_21-19-32-0.jpg?v=14", "nk/roja_club-video.mp4", "shop/sin-titulo-2sept_21-19-32-1.jpg?v=14", "shop/sin-titulo-2sept_21-19-32-2.jpg?v=14"], "sizes": ["L", "XL"], "disponibles": ["XL"], "agotado": false, "desc": "Camiseta Nike clásica en   rojo  , con el icónico   Swoosh en blanco   en el pecho. Un diseño limpio y versátil, perfecto para looks casuales y streetwear. Código Nike: AR4997-657.", "tag": null, "v": {"XL": 45767112032365}, "ultima": false, "ref": 144950, "refTxt": "Nike Colombia"}, {"id": "nike-basketball-hoop-grid-graphic-t-shirt-pink", "name": "Camiseta Nike Basketball rosada", "brand": "Nike", "cat": "camisetas", "price": 139900, "antes": null, "imgs": ["pres2/p_30.jpg?v=8", "shop/nike-basketball-hoop-grid-graphic-t-shir-0.jpg?v=14", "shop/nike-basketball-hoop-grid-graphic-t-shir-1.jpg?v=14", "shop/nike-basketball-hoop-grid-graphic-t-shir-2.jpg?v=14", "shop/nike-basketball-hoop-grid-graphic-t-shir-3.jpg?v=14"], "sizes": ["L"], "disponibles": ["L"], "agotado": false, "desc": "Camiseta Nike de manga corta y corte holgado, en   rosa claro  . Presenta un gráfico de aro y Swoosh en el pecho, mientras que la espalda incorpora un llamativo collage 3×3 inspirado en el básquet, con zapatillas, balones, aros y gráficos Nike. Código Nike: HJ3325-663.", "tag": null, "v": {"L": 45767095320685}, "ultima": true, "ref": null}, {"id": "esta-es-la-adidas-originals-city-skyline-t-shirt-en-color-beige-camel", "name": "Camiseta adidas City Skyline beige", "brand": "adidas", "cat": "camisetas", "price": 139900, "antes": null, "imgs": ["pres2/p_31.jpg?v=8", "shop/esta-es-la-adidas-originals-city-skyline-0.jpg?v=14", "shop/esta-es-la-adidas-originals-city-skyline-1.jpg?v=14", "shop/esta-es-la-adidas-originals-city-skyline-2.jpg?v=14", "shop/esta-es-la-adidas-originals-city-skyline-3.jpg?v=14"], "sizes": ["L"], "disponibles": ["L"], "agotado": false, "desc": "Camiseta Adidas Originals de corte holgado, confeccionada en un tono beige/camel. Lleva el icónico logo Trefoil pequeño en el pecho y un   gráfico de skyline en la espalda  , acompañado de “Adidas Originals” y las ciudades   New York, Los Angeles, Atlanta y Miami  . Un diseño urbano y retro, ideal para outfits streetwear. Código adidas: KW2270. Hay 2 en talla L.", "tag": null, "v": {"XL": 45767253819501, "L": 45767253852269}, "ultima": false}, {"id": "nike-sportswear-swoosh-t-shirt-black", "name": "Camiseta Nike Swoosh negra", "brand": "Nike", "cat": "camisetas", "price": 119900, "antes": null, "imgs": ["pres2/p_32.jpg?v=8", "shop/nike-sportswear-swoosh-t-shirt-black-0.jpg?v=14", "shop/nike-sportswear-swoosh-t-shirt-black-1.jpg?v=14", "shop/nike-sportswear-swoosh-t-shirt-black-2.jpg?v=14"], "sizes": ["L", "XL"], "disponibles": ["L", "XL"], "agotado": false, "desc": "Camiseta Nike Sportswear de manga corta, color negro, con ajuste holgado y gráficos Nike en verde neón. Diseño urbano y llamativo, ideal para outfits streetwear y uso diario. 100% algodón. Código Nike: HQ9262-060.", "tag": null, "v": {"L": 45767051280493, "XL": 45767051313261}, "ultima": false, "ref": null}, {"id": "nike-sportswear-max90-t-shirt-1", "name": "Camiseta Nike Max90 beige", "brand": "Nike", "cat": "camisetas", "price": 139900, "antes": null, "imgs": ["pres2/p_33.jpg?v=8", "nk/max90_beige-0.jpg?v=14", "nk/max90_beige-1.jpg?v=14", "nk/max90_beige-2.jpg?v=14", "nk/max90_beige-3.jpg?v=14", "nk/max90_beige-4.jpg?v=14", "nk/max90_beige-5.jpg?v=14", "nk/max90_beige-6.jpg?v=14"], "sizes": ["XL"], "disponibles": ["XL"], "agotado": false, "desc": "Nike Sportswear  Max90 T-Shirt  \n  Camiseta Nike de manga corta en color   tan/khaki  , con diseño gráfico   Air Max en azul   en la parte frontal y un llamativo estampado   AIR MAX   en la espalda. Su estilo urbano y moderno la hace perfecta para outfits streetwear y uso diario. Código Nike: HJ0599-297.", "tag": "Nuevo", "v": {"XL": 45767046037613}, "ultima": false, "ref": null}, {"id": "deion-sanders-you-gotta-believe-short-sleeve", "name": "Camiseta Nike Max90 Deion Sanders \"Believe\"", "brand": "Nike", "cat": "camisetas", "price": 139900, "antes": null, "imgs": ["pres2/p_34.jpg?v=8", "shop/deion-sanders-you-gotta-believe-short-sl-0.jpg?v=14", "shop/deion-sanders-you-gotta-believe-short-sl-1.jpg?v=14", "shop/deion-sanders-you-gotta-believe-short-sl-2.jpg?v=14"], "sizes": ["L", "XL"], "disponibles": ["L", "XL"], "agotado": false, "desc": "Deion Sanders “You Gotta Believe” Short Sleeve T-Shirt  \n  Camiseta de manga corta con diseño gráfico de   Deion Sanders “You Gotta Believe”  . Presenta estampado frontal de estilo vintage con imagen de Deion Sanders y lettering en contraste. Código Nike: IU1696-100.", "tag": null, "v": {"L": 45766908444781, "XL": 45766908477549}, "ultima": false}, {"id": "sin-titulo-2sept_12-44-21", "name": "Camiseta Nike Flame", "brand": "Nike", "cat": "camisetas", "price": 145000, "antes": null, "imgs": ["pres2/p_35.jpg?v=8", "shop/sin-titulo-2sept_12-44-21-0.jpg?v=14", "shop/sin-titulo-2sept_12-44-21-1.jpg?v=14", "shop/sin-titulo-2sept_12-44-21-2.jpg?v=14"], "sizes": ["L", "XL"], "disponibles": ["L"], "agotado": false, "desc": "Nike Sportswear Flame T-Shirt 🔥  \n  Camiseta Nike de manga corta en color rojo, con un llamativo   gráfico de llamas amarillas   que cubre gran parte del frente y la espalda. Cuenta con el clásico logo Nike en el pecho y detalle Nike en la parte posterior. Código Nike: HJ0766-657.", "tag": null, "v": {"L": 45766062211181}, "ultima": false, "ref": null}, {"id": "nike-sportswear-long-sleeve-t-shirt-1", "name": "Camiseta Nike \"Love\" manga larga negra", "brand": "Nike", "cat": "manga-larga", "price": 130000, "antes": null, "imgs": ["pres2/p_36.jpg?v=8", "shop/nike-sportswear-long-sleeve-t-shirt-1-0.jpg?v=14", "nk/love_negra-video.mp4", "shop/nike-sportswear-long-sleeve-t-shirt-1-1.jpg?v=14", "shop/nike-sportswear-long-sleeve-t-shirt-1-2.jpg?v=14"], "sizes": ["L", "XL"], "disponibles": ["L", "Xl"], "agotado": false, "desc": "Nike Sportswear Long-Sleeve T-Shirt  \n  Camiseta Nike Sportswear de manga larga en color negro, con detalle Nike en el pecho y llamativo gráfico   “Love Is in the Air”   en rosa en la espalda. Su diseño clásico y cómodo la convierte en una excelente opción para outfits urbanos y streetwear. Código Nike: IO9760-010.", "tag": null, "v": {"L": 45765673025645, "XL": 45765673058413}, "ultima": false, "ref": null}, {"id": "nike-sportswear-long-sleeve-t-shirt", "name": "Camiseta Nike \"Love\" manga larga roja", "brand": "Nike", "cat": "manga-larga", "price": 130000, "antes": null, "imgs": ["pres2/p_37.jpg?v=8", "shop/nike-sportswear-long-sleeve-t-shirt-0.jpg?v=14", "shop/nike-sportswear-long-sleeve-t-shirt-1.jpg?v=14", "shop/nike-sportswear-long-sleeve-t-shirt-2.jpg?v=14"], "sizes": ["L", "XL"], "disponibles": ["L", "XL"], "agotado": false, "desc": "Camiseta Nike Sportswear de manga larga en color rojo. Diseño clásico y versátil con el icónico detalle Nike en el pecho y gráfico   “Love is in the air”   en la espalda. Su tejido suave ofrece comodidad para el día a día, mientras que su estilo casual la hace ideal para outfits urbanos y streetwear. Código Nike: IO9760-613.", "tag": null, "v": {"L": 45765514166381, "XL": 45765514199149}, "ultima": false, "ref": null}, {"id": "adidas-skateboarding-x-mark-gonzales-skate-spot-tee", "name": "Camiseta adidas x Mark Gonzales", "brand": "adidas", "cat": "camisetas", "price": 139900, "antes": null, "imgs": ["pres2/p_38.jpg?v=8", "shop/adidas-skateboarding-x-mark-gonzales-ska-0.jpg?v=14", "shop/adidas-skateboarding-x-mark-gonzales-ska-1.jpg?v=14"], "sizes": ["L"], "disponibles": ["L"], "agotado": false, "desc": "Camiseta   adidas Skateboarding x Mark Gonzales Skate Spot Tee   en color blanco. Diseño de inspiración skate con gráficos exclusivos de Mark Gonzales en la parte frontal y posterior. Confeccionada en algodón suave para brindar comodidad y libertad de movimiento. Un estilo clásico y relajado, ideal para complementar cualquier outfit urbano. Código adidas: KE1014.", "tag": "Nuevo", "v": {"L": 45764967104621}, "ultima": true}, {"id": "nike-sportswear-max90-t-shirt", "name": "Camiseta Nike Max90 \"Tuned In\"", "brand": "Nike", "cat": "camisetas", "price": 139900, "antes": null, "imgs": ["pres2/p_39.jpg?v=8", "shop/nike-sportswear-max90-t-shirt-0.jpg?v=14", "shop/nike-sportswear-max90-t-shirt-1.jpg?v=14", "shop/nike-sportswear-max90-t-shirt-2.jpg?v=14", "shop/nike-sportswear-max90-t-shirt-3.jpg?v=14"], "sizes": ["M"], "disponibles": ["M"], "agotado": false, "desc": "Camiseta Nike Sportswear Max90 de corte holgado. Diseño cómodo con hombros caídos, mangas ligeramente más largas y una silueta amplia. Ideal para un estilo streetwear casual. Código Nike: HJ0750-100.", "tag": "Nuevo", "v": {"M": 45764639621229}, "ultima": true, "ref": null}, {"id": "general-clothes-example-product-4", "name": "Camiseta Nike ACG cactus crema", "brand": "Nike", "cat": "camisetas", "price": 139900, "antes": null, "imgs": ["pres2/p_40.jpg?v=8", "shop/general-clothes-example-product-4-0.jpg?v=14", "shop/general-clothes-example-product-4-1.jpg?v=14", "shop/general-clothes-example-product-4-2.jpg?v=14"], "sizes": ["M"], "disponibles": ["M", "L"], "agotado": false, "desc": "Camiseta color crema/beige  \n  Gráfico de cactus verde al frente  \n  Gráfico grande verde en la espalda  \n  Estilo oversized/streetwear  \n  Las fotos muestran frente y espalda Código Nike: HV1292-229. Hay 2 en talla M.", "tag": null, "v": {"M": 45761029210221, "L": 45767254507629}, "ultima": false}];
+const CATS=[
+  {id:"calzado",name:"Tenis",img:"cat/cat_calzado2.jpg"},
+  {id:"camisetas",name:"Camisetas",img:"cat/cat_camisetas2.jpg"},
+  {id:"manga-larga",name:"Manga larga",img:"cat/cat_manga-larga2.jpg"},
+  {id:"jerseys",name:"Jerseys",img:"cat/cat_jerseys2.jpg"},
+  {id:"pantalones",name:"Sudaderas",img:"cat/cat_sudaderas.jpg"},
+  {id:"buzos",name:"Sacos",img:"cat/cat_sacos.jpg"},
+  {id:"conjuntos",name:"Conjuntos",img:"cat/cat_conjuntos2.jpg"},
+  {id:"shorts",name:"Shorts",img:"cat/cat_shorts2.jpg"},
+  {id:"gorras",name:"Gorras",img:"cat/cat_gorras2.jpg"}
+];
+const $=s=>document.querySelector(s);
+const fmt=n=>"$"+n.toLocaleString("es-CO")+" COP";
+let FAVS=[],VISTOS=[],tallaF="",soloFav=false;try{FAVS=JSON.parse(localStorage.getItem("ms_favs")||"[]");VISTOS=JSON.parse(localStorage.getItem("ms_vistos")||"[]")}catch(e){}
+let q="", orden="", marca="Todas", fotoI=0, filtro="todos", actual=null, talla=null, carrito=[];
+try{carrito=JSON.parse(localStorage.getItem("ms-pedido")||"[]")}catch(e){carrito=[]}
+const guardar=()=>{try{localStorage.setItem("ms-pedido",JSON.stringify(carrito))}catch(e){}};
+
+const fotos=p=>p.imgs.filter(f=>!f.endsWith(".mp4"));
+const MINI=new Set(["nk/adi_real_blanca.jpg","nk/adi_real_crema.jpg","nk/adi_real_gris_front.jpg","nk/brooklyn_pant-0.jpg","nk/bungee_gris-0.jpg","nk/club_hood_gris-0.jpg","nk/club_hood_negro-0.jpg","nk/coach_cafe_st-0.jpg","nk/coach_negra_st-0.jpg","nk/conj_club_gris-0.jpg","nk/firebird_indigo-0.jpg","nk/griffey-0.jpg","nk/howard_pant-0.jpg","nk/jam-0.jpg","nk/jam_chaqueta-0.jpg","nk/jf_jersey_estampado-0.jpg","nk/jf_ls_blanca-0.jpg","nk/jfe_gris-0.jpg","nk/jordan_bulls-0.jpg","nk/jordan_flight_negra-0.jpg","nk/jordan_sport_negra-0.jpg","nk/la_studio-1.jpg","nk/lared_studio-0.jpg","nk/max90_beige-0.jpg","nk/max90_gris-0.jpg","nk/max_heat-0.jpg","nk/mets_studio-1.jpg","nk/mineral_slate-0.jpg","nk/morehouse-0.jpg","nk/nsw_negra-0.jpg","nk/pe_blanca-0.jpg","nk/pe_jdi_gris-0.jpg","nk/pegasus_tee-0.jpg","nk/premium_ess-0.jpg","nk/pres_gorras_02.jpg","nk/pres_gorras_03.jpg","nk/pres_gorras_04.jpg","nk/pres_gorras_05.jpg","nk/pres_gorras_06.jpg","nk/solo_swoosh_verde-1.jpg","nk/st_amp7-fl0.jpg","nk/st_amplus-0.jpg","nk/st_aura7-0.jpg","nk/st_cortez-0.jpg","nk/st_dn8_pink-fl0.jpg","nk/st_dn8_sequoia-fl0.jpg","nk/st_dn8_verde-fl0.jpg","nk/st_torch4-0.jpg","pres/conj_adidas_blanca.jpg","pres/conj_adidas_crema.jpg","pres/conj_adidas_gris.jpg","pres/conj_fleece.jpg","pres/conj_jam.jpg","pres/jordan_aura7.jpg","pres/jordan_brooklyn.jpg","pres/jordan_bulls.jpg","pres/jordan_fegris.jpg","pres/jordan_flightnegra.jpg","pres/jordan_howard.jpg","pres/jordan_jamchaqueta.jpg","pres/jordan_jampant.jpg","pres/jordan_jersey.jpg","pres/jordan_lsblanca.jpg","pres/jordan_sportnegra.jpg","pres2/p_00.jpg","pres2/p_01.jpg","pres2/p_02.jpg","pres2/p_03.jpg","pres2/p_04.jpg","pres2/p_05.jpg","pres2/p_06.jpg","pres2/p_07.jpg","pres2/p_08.jpg","pres2/p_09.jpg","pres2/p_10.jpg","pres2/p_11.jpg","pres2/p_12.jpg","pres2/p_13.jpg","pres2/p_14.jpg","pres2/p_15.jpg","pres2/p_16.jpg","pres2/p_17.jpg","pres2/p_18.jpg","pres2/p_19.jpg","pres2/p_20.jpg","pres2/p_21.jpg","pres2/p_22.jpg","pres2/p_23.jpg","pres2/p_24.jpg","pres2/p_25.jpg","pres2/p_26.jpg","pres2/p_27.jpg","pres2/p_28.jpg","pres2/p_29.jpg","pres2/p_30.jpg","pres2/p_31.jpg","pres2/p_32.jpg","pres2/p_33.jpg","pres2/p_34.jpg","pres2/p_35.jpg","pres2/p_36.jpg","pres2/p_37.jpg","pres2/p_38.jpg","pres2/p_39.jpg","pres2/p_40.jpg","shop/adidas-originals-archive-collar-engineer-0.jpg","shop/adidas-skateboarding-x-mark-gonzales-ska-0.jpg","shop/camiseta-adidas-fifa-world-cup-26-strik-0.jpg","shop/camiseta-adidas-originals-de-franjas-0.jpg","shop/deion-sanders-you-gotta-believe-short-sl-0.jpg","shop/esta-es-la-adidas-originals-city-skyline-0.jpg","shop/general-clothes-example-product-4-0.jpg","shop/jersey-negra-0.jpg","shop/nike-basketball-hoop-grid-graphic-t-shir-0.jpg","shop/nike-sportswear-long-sleeve-t-shirt-0.jpg","shop/nike-sportswear-long-sleeve-t-shirt-1-0.jpg","shop/nike-sportswear-long-sleeve-t-shirt-2-0.jpg","shop/nike-sportswear-max90-t-shirt-0.jpg","shop/nike-sportswear-swoosh-t-shirt-black-0.jpg","shop/sin-titulo-2sept_12-44-21-0.jpg","shop/sin-titulo-2sept_21-19-32-0.jpg","shop/sin-titulo-4sept_23-11-38-0.jpg","shop/sin-titulo-4sept_23-38-04-0.jpg"]);const mini=f=>MINI.has(f.split("?")[0])?"m/"+f:f;
+function card(p){
+  const precio=p.price?`<span class="price">${fmt(p.price)}</span>${p.antes?` <s class="dm">${fmt(p.antes)}</s>`:""}${p.ref?`<span class="ref">${p.refTxt||"Nike Colombia"}: <s>${fmt(p.ref)}</s></span>`:""}`:`<span class="dm">Precio por DM</span>`;
+  const dto=(p.tag&&p.tag.includes("%")&&!p.agotado)?`<span class="tag red dto">${p.tag}</span>`:"";
+  const etiqueta=dto+(p.agotado?`<span class="tag">Agotado</span>`:p.ultima?`<span class="tag hot">${dto?"Última unidad":`Última unidad · ${p.sizes[0]}`}</span>`:(p.tag&&!dto?`<span class="tag red">${p.tag}</span>`:""));
+  return `<button class="card${p.agotado?" off":""}" type="button" data-id="${p.id}"><div class="ph">${fotos(p).length>1?`<div class="strip">${fotos(p).map((f,i)=>`<img src="${mini(f)}" alt="${p.name}" loading="${i?"lazy":"eager"}" decoding="async" draggable="false">`).join("")}</div><div class="dots">${fotos(p).map((_,i)=>`<i class="${i?"":"on"}"></i>`).join("")}</div>`:`<img src="${mini(p.imgs[0])}" alt="${p.name}" loading="lazy" decoding="async">`}<span class="fav" role="button" tabindex="0" data-fav="${p.id}" aria-label="Guardar en favoritos" aria-pressed="${FAVS.includes(p.id)}">${FAVS.includes(p.id)?"♥":"♡"}</span></div>
+  ${etiqueta?`<div class="chips">${etiqueta}</div>`:""}<span class="brandname">${p.brand}</span><h3>${p.name}</h3><div class="meta">${precio}</div></button>`;
+}
+const ioPre=("IntersectionObserver" in window)?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){[...e.target.querySelectorAll("img")].slice(0,2).forEach(im=>im.loading="eager");ioPre.unobserve(e.target)}}),{rootMargin:"600px 0px"}):null;
+function activarStrips(){document.querySelectorAll(".ph .strip").forEach(st=>{if(st.dataset.ok)return;st.dataset.ok=1;if(ioPre)ioPre.observe(st);;st.addEventListener("pointerdown",()=>[...st.querySelectorAll("img")].slice(0,3).forEach(im=>im.loading="eager"),{passive:true,once:true});st.addEventListener("scroll",()=>{const i=Math.round(st.scrollLeft/Math.max(1,st.clientWidth));[...st.querySelectorAll("img")].slice(i,i+2).forEach(im=>im.loading="eager")},{passive:true});
+  st.addEventListener("scroll",()=>{const i=Math.round(st.scrollLeft/Math.max(1,st.clientWidth));st.parentElement.querySelectorAll(".dots i").forEach((d,k)=>d.classList.toggle("on",k===i))},{passive:true});
+  let x0=0;st.addEventListener("pointerdown",e=>{x0=e.clientX},{passive:true});
+  st.closest(".card").addEventListener("click",e=>{if(Math.abs(e.clientX-x0)>8&&x0){e.stopPropagation();e.preventDefault()}x0=0},true);});}
+
+const io=("IntersectionObserver" in window)?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{rootMargin:"0px 0px -40px 0px"}):null;
+function revelar(){document.querySelectorAll("#grid .card, #cats .cat, #rail .card, .trust>div, section .head h2").forEach((el,i)=>{if(el.classList.contains("reveal"))return;el.classList.add("reveal");el.style.transitionDelay=(i%4)*70+"ms";if(io)io.observe(el);else el.classList.add("in")})}
+function pintar(){
+  $("#cats").innerHTML=CATS.map(c=>`<button class="cat" type="button" data-cat="${c.id}"><img src="${c.img}" alt="${c.name}" loading="lazy"><span>${c.name} →</span></button>`).join("");
+  $("#rail").innerHTML=PRODUCTS.filter(p=>p.tag&&!p.agotado).concat(PRODUCTS.filter(p=>!p.tag&&!p.agotado)).slice(0,10).map(card).join("");
+  const chips=[{id:"todos",name:"Todo"}].concat(CATS);
+  $("#chips").innerHTML=chips.map(c=>`<button class="chip" type="button" data-f="${c.id}" aria-pressed="${c.id===filtro}">${c.name}</button>`).join("");
+  const MARCAS=["Todas"].concat(["Nike","Jordan","adidas","New Era","Coach"].filter(m=>PRODUCTS.some(p=>p.brand===m)));
+  $("#marcas").innerHTML=MARCAS.map(m=>`<button class="marca" type="button" data-m="${m}" aria-pressed="${m===marca}">${m}</button>`).join("");
+  const lista=PRODUCTS.filter(p=>(filtro==="todos"||p.cat===filtro)&&(marca==="Todas"||p.brand===marca)&&(!tallaF||p.sizes.some(s=>tallaTok(s)===tallaF))&&(!soloFav||FAVS.includes(p.id)));
+  pintarExtras();
+  if(q){const t=q.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();lista.splice(0,lista.length,...lista.filter(p=>(p.name+" "+p.brand+" "+p.cat+" "+(p.desc||"")).normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().includes(t)))}
+  if(orden) lista.sort((a,b)=>orden==="asc"?a.price-b.price:b.price-a.price);
+  const encT=`<a class="card enc-tile" href="#encargos" data-enc="1"><div class="ph"><div>🗽<strong>¿No está aquí?</strong><span>Pídelo y te digo si te lo puedo conseguir en Nueva York.</span><br><em>Pedir</em></div></div></a>`;
+  $("#grid").innerHTML=(soloFav&&!lista.length)?`<div class="vacio">♡ Aún no tienes favoritos.<br>Toca el corazón de una prenda para guardarla aquí.</div>`:lista.length?lista.map(card).join("")+encT:`<div class="vacio">😕 No tenemos <b>${q?"“"+q.replace(/[<>&"]/g,"")+"”":"eso"}</b> ahora mismo.<br>Pídelo y te digo si te lo puedo conseguir en Nueva York.<br><br><a class="btn red" href="#encargos" data-enc="1">Pedirlo</a></div>`;
+  $("#countLabel").textContent=`${lista.length} ${lista.length===1?"producto":"productos"}`;
+  pintarCarrito();
+  activarStrips();
+  revelar();
+}
+function abrir(id){
+  actual=PRODUCTS.find(p=>p.id===id); if(!actual)return;
+  VISTOS=[id].concat(VISTOS.filter(x=>x!==id)).slice(0,10);try{localStorage.setItem("ms_vistos",JSON.stringify(VISTOS))}catch(e){};setTimeout(pintarVistos,400); talla=actual.sizes.length===1?actual.sizes[0]:null;
+  fotoI=0;$("#track").innerHTML=actual.imgs.map((f,i)=>f.endsWith(".mp4")?`<video src="${f}" autoplay muted loop playsinline preload="metadata" aria-label="${actual.name} video"></video>`:`<img src="${f}" alt="${actual.name} foto ${i+1}" draggable="false" decoding="async" style="background:#141416 url('${mini(f)}') center/cover no-repeat">`).join("");$("#track").scrollLeft=0;
+  $("#thumbs").innerHTML=actual.imgs.length>1?actual.imgs.map((f,i)=>`<button type="button" data-foto="${i}" aria-label="${f.endsWith(".mp4")?"Video":"Foto "+(i+1)}" aria-pressed="${i===0}">${f.endsWith(".mp4")?`<span class="play">▶</span>`:`<img src="${mini(f)}" alt="" loading="lazy">`}</button>`).join(""):"";
+  const varias=actual.imgs.length>1;$("#prevFoto").hidden=$("#nextFoto").hidden=$("#fotoCount").hidden=!varias;marcarFoto(0);
+  $("#sheetBrand").textContent=actual.brand; $("#sheetTitle").textContent=actual.name;
+  $("#sheetPrice").innerHTML=actual.price?`<span class="price" style="font-size:20px;color:#fff">${fmt(actual.price)}</span>${actual.ref?` <span class="ref" style="display:inline">· ${actual.refTxt||"Nike Colombia"}: <s>${fmt(actual.ref)}</s></span>`:""} <span class="dm" style="color:var(--muted);font-size:12px">· envío gratis desde 2 prendas</span>`:`<span class="dm" style="color:var(--muted)">Precio por DM · envío gratis desde 2 prendas</span>`;
+  $("#sheetDesc").textContent=actual.desc;
+  $("#ultima").hidden=!actual.ultima;$("#ultima").textContent=actual.ultima?`🔥 Última unidad: solo queda talla ${actual.sizes[0]}.`:"";
+  $("#addBtn").textContent=actual.agotado?"Agotado":"Agregar al pedido";
+  $("#sizes").innerHTML=actual.sizes.map(s=>`<button type="button" data-s="${s}" aria-pressed="${s===talla}">${s}</button>`).join("");
+  const comp={camisetas:["pantalones","shorts","gorras","calzado"],"manga-larga":["pantalones","gorras","calzado"],jerseys:["shorts","gorras","calzado"],pantalones:["camisetas","buzos","calzado"],buzos:["pantalones","gorras","calzado"],shorts:["camisetas","jerseys","gorras"],gorras:["camisetas","buzos","calzado"],calzado:["pantalones","shorts","camisetas","gorras"],conjuntos:["calzado","gorras"]}[actual.cat]||["calzado","gorras"];
+  const pool=PRODUCTS.filter(p=>p.id!==actual.id&&!p.agotado&&comp.includes(p.cat));
+  const rel=[];comp.forEach(c=>{const m=pool.filter(p=>p.cat===c&&!rel.includes(p));const pick=m.find(p=>p.brand===actual.brand)||m[Math.floor(Math.random()*m.length)];if(pick&&rel.length<4)rel.push(pick)});
+  pool.forEach(p=>{if(rel.length<4&&!rel.includes(p))rel.push(p)});
+  $("#rel").innerHTML=rel.map(card).join("");$("#relWrap").hidden=!rel.length;
+  try{history.replaceState(null,"","#p="+encodeURIComponent(actual.id))}catch(e){}
+  $("#sheet").hidden=false; $("#sheetClose").scrollIntoView&&$("#sheet .box").scrollTo(0,0); $("#sheetClose").focus();
+}
+function marcarFoto(i){fotoI=i;const n=actual?actual.imgs.length:1;$("#fotoCount").textContent=`${i+1} / ${n}`;
+  [...$("#thumbs").children].forEach((b,k)=>b.setAttribute("aria-pressed",k===i));}
+function irFoto(i){const n=actual.imgs.length;i=(i+n)%n;const tr=$("#track");tr.scrollTo({left:i*tr.clientWidth,behavior:"smooth"});marcarFoto(i);}
+function aviso(t){const el=$("#toast");el.textContent=t;el.hidden=false;clearTimeout(aviso.t);aviso.t=setTimeout(()=>el.hidden=true,1800)}
+const prendas=()=>carrito.reduce((t,it)=>t+(it.id.startsWith("conjunto")?2:1),0);
+function pintarEnvio(){const n=prendas(),el=$("#envio");el.hidden=!carrito.length;if(!carrito.length)return;
+  const ok=n>=2;el.className="envio"+(ok?" ok":"");
+  el.innerHTML="<span>"+(ok?"✅ <b>¡Envío gratis!</b> Llevas 2 o más prendas.":"📦 Agrega <b>1 prenda más</b> y el envío te sale <b>gratis</b>. Con 1 prenda, el envío se cotiza por DM.")+"</span>"+`<div class="bar"><i style="width:${Math.min(100,n/2*100)}%"></i></div>`;}
+const COMP={camisetas:["pantalones","shorts","gorras","calzado"],"manga-larga":["pantalones","gorras","calzado"],jerseys:["shorts","gorras","calzado"],pantalones:["camisetas","buzos","calzado"],buzos:["pantalones","gorras","calzado"],shorts:["camisetas","jerseys","gorras"],gorras:["camisetas","buzos","calzado"],calzado:["pantalones","shorts","camisetas","gorras"],conjuntos:["calzado","gorras"]};
+function sugerir(){const w=$("#upWrap");if(!carrito.length){w.hidden=true;return}
+  const ids=carrito.map(it=>it.id),cats=[...new Set(carrito.map(it=>(PRODUCTS.find(p=>p.id===it.id)||{}).cat))];
+  const want=[...new Set(cats.flatMap(c=>COMP[c]||[]))].filter(c=>!cats.includes(c));
+  const out=[];want.forEach(c=>{const m=PRODUCTS.filter(p=>p.cat===c&&!p.agotado&&!ids.includes(p.id)&&!out.includes(p));if(m.length&&out.length<4)out.push(m[Math.floor(Math.random()*m.length)])});
+  $("#up").innerHTML=out.map(card).join("");w.hidden=!out.length}
+function pintarCarrito(){pintarEnvio();sugerir();$("#sendBtn").hidden=!carrito.length;
+  {const c=$("#cartCount");if(c.textContent!=String(carrito.length)){c.textContent=carrito.length;c.classList.remove("pop");void c.offsetWidth;c.classList.add("pop")}}
+  $("#items").innerHTML=carrito.length?carrito.map((it,i)=>{const p=PRODUCTS.find(x=>x.id===it.id);return `<div class="line-item"><img src="${p.imgs[0]}" alt=""><div><div style="font-weight:600">${p.name}</div><small>Talla ${it.talla} · ${p.price?fmt(p.price):"precio por DM"}</small></div><button type="button" data-del="${i}">Quitar</button></div>`}).join(""):`<p class="note" style="padding-block:20px">Tu pedido está vacío. Toca un producto y elige tu talla.</p>`;
+  const conPrecio=carrito.map(it=>PRODUCTS.find(p=>p.id===it.id)).filter(p=>p.price);
+  const suma=conPrecio.reduce((a,p)=>a+p.price,0), sinPrecio=carrito.length-conPrecio.length;
+  $("#total").textContent=carrito.length?(fmt(suma)+(sinPrecio?` + ${sinPrecio} por confirmar`:"")):"—";
+  $("#orderText").value=carrito.length?("Hola Midnight Saints 👋 Quiero hacer este pedido:\n"+carrito.map(it=>{const p=PRODUCTS.find(x=>x.id===it.id);return `• ${p.name} — talla ${it.talla} — ${p.price?fmt(p.price):"precio por confirmar"}`}).join("\n")+`\nTotal: ${$("#total").textContent}\nEnvío: ${prendas()>=2?"gratis (2 o más prendas)":"por cotizar"}\nCiudad de envío: `):"";
+}
+document.addEventListener("click",e=>{
+  const fv=e.target.closest("[data-fav]"); if(fv){e.preventDefault();toggleFav(fv.dataset.fav);return}
+  const c=e.target.closest(".card[data-id]"); if(c){if(c.closest("#up"))$("#drawer").hidden=true;abrir(c.dataset.id);return}
+  const k=e.target.closest(".cat"); if(k){filtro=k.dataset.cat;pintar();$("#catalogo").scrollIntoView();return}
+  const f=e.target.closest(".chip"); if(f){filtro=f.dataset.f;pintar();return}
+  const mm=e.target.closest(".marca"); if(mm){marca=mm.dataset.m;pintar();return}
+  const s=e.target.closest("#sizes button"); if(s){talla=s.dataset.s;[...$("#sizes").children].forEach(b=>b.setAttribute("aria-pressed",b===s));return}
+  const ft=e.target.closest("[data-foto]"); if(ft){irFoto(+ft.dataset.foto);return}
+  const d=e.target.closest("[data-del]"); if(d){carrito.splice(+d.dataset.del,1);guardar();pintarCarrito();return}
+});
+$("#track").addEventListener("scroll",()=>{const tr=$("#track");const i=Math.round(tr.scrollLeft/Math.max(1,tr.clientWidth));if(i!==fotoI&&actual)marcarFoto(i)},{passive:true});
+$("#prevFoto").onclick=()=>irFoto(fotoI-1);$("#nextFoto").onclick=()=>irFoto(fotoI+1);
+document.addEventListener("keydown",e=>{if($("#sheet").hidden||!actual)return;if(e.key==="ArrowRight")irFoto(fotoI+1);if(e.key==="ArrowLeft")irFoto(fotoI-1)});
+const cerrarSheet=()=>{$("#sheet").hidden=true;try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}};
+$("#sheetClose").onclick=cerrarSheet;
+$("#guiaBtn").onclick=()=>{$("#guia").hidden=false;$("#guiaClose").focus()};$("#guiaClose").onclick=()=>$("#guia").hidden=true;$("#guia").addEventListener("click",e=>{if(e.target.id==="guia")$("#guia").hidden=true});
+$("#buyWa").addEventListener("click",e=>{if(actual.agotado){e.preventDefault();aviso("Este producto está agotado");return}if(!talla){e.preventDefault();aviso("Elige tu talla primero");return}
+  $("#buyWa").href="https://wa.me/19294888365?text="+encodeURIComponent(`Hola Midnight Saints 👋 Quiero comprar:\n• ${actual.name} — talla ${talla} — ${actual.price?fmt(actual.price):"precio por confirmar"}\nCiudad de envío: `)});
+$("#shareBtn").onclick=async()=>{const url=location.href.split("#")[0]+"#p="+encodeURIComponent(actual.id);const d={title:actual.name+" · Midnight Saints",text:actual.name+" — "+(actual.price?fmt(actual.price):""),url};
+  try{if(navigator.share){await navigator.share(d);return}}catch(e){return}
+  try{await navigator.clipboard.writeText(url);aviso("Link copiado ✅")}catch(e){aviso(url)}};
+$("#q").addEventListener("input",e=>{q=e.target.value.trim();pintar()});
+$("#sheet").addEventListener("click",e=>{if(e.target.id==="sheet")cerrarSheet()});
+$("#addBtn").onclick=()=>{if(actual.agotado){aviso("Este producto está agotado");return}if(!talla){aviso("Elige tu talla primero");return}carrito.push({id:actual.id,talla});guardar();pintarCarrito();$("#sheet").hidden=true;aviso("Agregado a tu pedido")};
+$("#cartBtn").onclick=()=>{$("#drawer").hidden=false;$("#drawerClose").focus()};
+$("#drawerClose").onclick=()=>$("#drawer").hidden=true;
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){$("#guia").hidden=true;$("#sheet").hidden=true;$("#drawer").hidden=true}});
+$("#sendBtn").addEventListener("click",()=>{const t=$("#orderText");if(!t.value)return;
+  try{navigator.clipboard.writeText(t.value).then(()=>aviso("Pedido copiado ✅ Pégalo en el chat"),()=>aviso("Copia el mensaje de arriba y pégalo en el chat"))}catch(e){aviso("Copia el mensaje de arriba y pégalo en el chat")}});
+$("#waBtn").addEventListener("click",e=>{const t=$("#orderText");if(!t.value){e.preventDefault();aviso("Agrega algo a tu pedido primero");return}
+  $("#waBtn").href="https://wa.me/19294888365?text="+encodeURIComponent(t.value);});
+{const b=document.getElementById("toTop");addEventListener("scroll",()=>b.classList.toggle("show",scrollY>600),{passive:true});b.onclick=()=>scrollTo({top:0,behavior:"smooth"});}
+{const DROPS=[
+ {n:"Jordan",t:"Jordan",f:{marca:"Jordan"},imgs:["01_portada","02_bulls","03_jam","04_flight","05_23","06_pants","07_aura7","08_tees"]},
+ {n:"Nike",t:"Nike",f:{marca:"Nike"},imgs:["nike_01","nike_02","nike_03","nike_04","nike_05","nike_06","nike_07","nike_08"]},
+ {n:"adidas",t:"adidas",f:{marca:"adidas"},imgs:["adidas_01","adidas_02","adidas_03","adidas_04","adidas_05","adidas_06"]},
+ {n:"Gorras",t:"gorras",f:{cat:"gorras"},imgs:["gorras_01","gorras_02","gorras_03","gorras_04","gorras_05","gorras_06"]}];
+let di=0;try{const last=+localStorage.getItem("ms_drop");di=isNaN(last)?Math.floor(Math.random()*DROPS.length):(last+1)%DROPS.length;localStorage.setItem("ms_drop",di)}catch(e){di=Math.floor(Math.random()*DROPS.length)}
+const dp=DROPS[di],r=document.getElementById("adRail");
+document.getElementById("adBadge").textContent="🔥 Nuevo drop · "+dp.n;
+document.getElementById("adCta").textContent="Ver colección "+dp.t+" →";
+r.innerHTML=dp.imgs.map((x,i)=>`<button class="drop-s" type="button" data-dropi="1"><img src="drop/${x}.jpg" alt="Drop ${dp.n} ${i+1}" ${i?'loading="lazy"':''}></button>`).join("");
+document.getElementById("adDots").innerHTML=dp.imgs.map(()=>"<i></i>").join("");
+const ir=()=>{if(dp.f.marca){marca=dp.f.marca;filtro="todos"}else{marca="Todas";filtro=dp.f.cat}pintar();$("#catalogo").scrollIntoView({behavior:"smooth"})};
+document.getElementById("adCta").onclick=ir;r.addEventListener("click",e=>{if(e.target.closest(".drop-s"))ir()});
+const ds=[...document.querySelectorAll("#adDots i")];let i=0,t;
+const go=n=>{i=(n+ds.length)%ds.length;r.scrollTo({left:i*r.clientWidth});};
+const mark=()=>{const k=Math.round(r.scrollLeft/r.clientWidth);ds.forEach((d,j)=>d.classList.toggle("on",j===k));i=k};
+r.addEventListener("scroll",mark,{passive:true});mark();
+const auto=()=>{clearInterval(t);if(!matchMedia("(prefers-reduced-motion:reduce)").matches)t=setInterval(()=>go(i+1),3200)};
+r.addEventListener("pointerdown",()=>clearInterval(t));r.addEventListener("touchend",()=>setTimeout(auto,4000));auto();}
+pintar();
+{const m=decodeURIComponent((location.hash.match(/#p=([^&]+)/)||[])[1]||"");if(m&&PRODUCTS.some(p=>p.id===m))setTimeout(()=>abrir(m),300);}
+{const n=PRODUCTS.filter(p=>p.ultima).length;$("#heroHot").textContent=n?`🔥 ${n} prendas con última unidad. Cuando se acaban, no vuelven.`:"";}
+document.getElementById("orden").addEventListener("change",e=>{orden=e.target.value;pintar();});
+
+/* Encargos */
+var encFile=null;function encMsg(){const v=id=>(document.getElementById(id).value||"").trim();const l=["Hola Midnight Saints 👋 Busco algo que no está en la tienda, ¿se puede conseguir?","• Producto: "+(v("encQue")||"____")];
+ if(v("encTalla"))l.push("• Talla: "+v("encTalla"));if(v("encColor"))l.push("• Color: "+v("encColor"));if(v("encCiudad"))l.push("• Ciudad: "+v("encCiudad"));if(v("encPres"))l.push("• Presupuesto: "+v("encPres"));if(v("encDet"))l.push("• Detalles: "+v("encDet"));if(encFile)l.push("📸 Te envío la foto aquí abajo.");
+ document.getElementById("encBtn").href="https://wa.me/19294888365?text="+encodeURIComponent(l.join("\n"));}
+document.getElementById("encForm").addEventListener("input",encMsg);encMsg();
+document.getElementById("encFoto").addEventListener("change",e=>{encFile=e.target.files&&e.target.files[0]||null;const pv=document.getElementById("encPrev");
+ if(encFile){document.getElementById("encFotoTxt").textContent="Cambiar foto";document.getElementById("encImg").src=URL.createObjectURL(encFile);pv.hidden=false;document.getElementById("encBtn").textContent="Enviar encargo con foto 💬";
+  try{document.getElementById("encShare").hidden=!(navigator.canShare&&navigator.canShare({files:[encFile]}))}catch(_){document.getElementById("encShare").hidden=true}}
+ else{pv.hidden=true;document.getElementById("encShare").hidden=true;document.getElementById("encBtn").textContent="Preguntar por WhatsApp 💬"}
+ encMsg();});
+document.getElementById("encShare").addEventListener("click",async()=>{if(!encFile)return;try{await navigator.share({files:[encFile],text:"Foto de mi encargo para Midnight Saints"})}catch(_){}});
+document.getElementById("encBtn").addEventListener("click",e=>{const i=document.getElementById("encQue");if(!i.value.trim()){e.preventDefault();i.focus();i.placeholder="Escribe qué buscas 👆";i.style.borderColor="var(--red)";}});
+document.addEventListener("click",e=>{const a=e.target.closest("[data-enc]");if(!a)return;const qv=(document.getElementById("q").value||"").trim();if(qv){const i=document.getElementById("encQue");if(!i.value)i.value=qv;encMsg();}});
+
+/* Favoritos, talla y vistos */
+function tallaTok(s){const m=s.match(/COL (\d+)/);if(m)return "COL "+m[1];return s.replace(/^Camiseta /,"")}
+function pintarExtras(){const ts=[...new Set(PRODUCTS.filter(p=>!p.agotado).flatMap(p=>p.sizes.map(tallaTok)))].filter(s=>!/DM|nica/i.test(s));
+ const ord=s=>{const r=["XS","S","M","L","XL","2XL","XXL"].indexOf(s);if(r>=0)return r;if(s.startsWith("COL"))return 200+parseInt(s.slice(4));return 100+(parseFloat(s)||0)};ts.sort((a,b)=>ord(a)-ord(b));
+ const lab=s=>s.startsWith("COL")?`Tenis ${s.slice(4)} COL`:/^\d+$/.test(s)?`Cintura ${s}`:`Talla ${s}`;
+ const grp=[["Ropa",ts.filter(s=>ord(s)<100)],["Shorts y sudaderas",ts.filter(s=>ord(s)>=100&&ord(s)<200)],["Tenis",ts.filter(s=>ord(s)>=200)]].filter(g=>g[1].length);
+ const sel=document.getElementById("tallaSel");sel.innerHTML='<option value="">Mi talla</option>'+grp.map(g=>`<optgroup label="${g[0]}">`+g[1].map(s=>`<option value="${s}" ${s===tallaF?"selected":""}>${lab(s)}</option>`).join("")+"</optgroup>").join("");
+ const fb=document.getElementById("favBtn");fb.setAttribute("aria-pressed",soloFav);fb.textContent=(soloFav?"♥":"♡")+" Favoritos"+(FAVS.length?` (${FAVS.length})`:"");}
+function toggleFav(id){const i=FAVS.indexOf(id);if(i>=0)FAVS.splice(i,1);else FAVS.push(id);try{localStorage.setItem("ms_favs",JSON.stringify(FAVS))}catch(e){}
+ document.querySelectorAll(`[data-fav="${CSS.escape(id)}"]`).forEach(el=>{const on=FAVS.includes(id);el.setAttribute("aria-pressed",on);el.textContent=on?"♥":"♡"});
+ aviso(FAVS.includes(id)?"♥ Guardado en favoritos":"Quitado de favoritos");if(soloFav)pintar();else pintarExtras();}
+function pintarVistos(){const ps=VISTOS.map(id=>PRODUCTS.find(p=>p.id===id)).filter(p=>p&&!p.agotado);const w=document.getElementById("vistosWrap");w.hidden=ps.length<2;if(ps.length>=2){document.getElementById("vistos").innerHTML=ps.map(card).join("");activarStrips();}}
+document.getElementById("tallaSel").addEventListener("change",e=>{tallaF=e.target.value;pintar()});
+document.getElementById("favBtn").addEventListener("click",()=>{soloFav=!soloFav;pintar()});
+document.addEventListener("keydown",e=>{const fv=e.target.closest&&e.target.closest("[data-fav]");if(fv&&(e.key==="Enter"||e.key===" ")){e.preventDefault();e.stopPropagation();toggleFav(fv.dataset.fav)}},true);
+pintarExtras();pintarVistos();
+</script>
+</body></html>
