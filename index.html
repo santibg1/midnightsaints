@@ -245,7 +245,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
 #cartCount.pop{animation:pop .45s ease}
 .cat span{transition:letter-spacing .3s}.cat:hover span{letter-spacing:.04em}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal,.hero .wrap>*{opacity:1!important;transform:none!important}}
-.card .ph{padding:0!important}.card .ph>img{position:absolute;inset:0;object-position:center top}.card .ph .strip img{position:static;object-position:center top}.card .ph .fav{top:8px;left:8px;right:auto;width:32px;height:32px;font-size:15px}.card .chips{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0}.card .chips .tag{position:static;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#grid .card:not(.enc-tile){background:#121214;border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:8px 8px 14px}#grid .card:not(.enc-tile) .ph{border-radius:8px}#grid .card:not(.enc-tile)>:not(.ph){padding-left:4px;padding-right:4px}#grid{gap:22px}</style>
+.card .ph{padding:0!important}.card .ph>img{position:absolute;inset:0;object-position:center top}.card .ph .strip img{position:static;object-position:center top}.card .ph .fav{top:8px;left:8px;right:auto;width:32px;height:32px;font-size:15px}.card .chips{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0}.card .chips .tag{position:static;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#grid .card:not(.enc-tile){background:#121214;border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:8px 8px 14px}#grid .card:not(.enc-tile) .ph{border-radius:8px}#grid .card:not(.enc-tile)>:not(.ph){padding-left:4px;padding-right:4px}#grid{gap:22px}.drawer{display:flex!important;flex-direction:column;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}.drawer[hidden]{display:none!important}.drawer .items{overflow:visible;flex:none;display:grid;gap:0}.line-item{grid-template-columns:72px minmax(0,1fr) auto;gap:12px;align-items:start}.line-item img{width:72px;height:90px;border-radius:8px}.li-b{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}.li-n{font-weight:600;line-height:1.25;margin:2px 0}.li-p{font-weight:700;margin-top:4px;font-variant-numeric:tabular-nums}.line-item button{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);text-decoration:none;font-size:14px;color:var(--fg,#fff);display:grid;place-items:center}</style>
 
 <div class="announce" aria-label="Anuncio"><div class="track">
   <span>Ropa 100% original · comprada en tienda en Nueva York</span><span>Envío gratis desde $240.000 o 2 prendas 🇨🇴</span><span>Pedidos por WhatsApp o DM @midnightsaints1</span><span>¿No está en la tienda? Pídelo y te digo si se puede 🗽</span>
@@ -413,15 +413,15 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
 </div></div></div>
 
 <aside class="drawer" id="drawer" hidden aria-label="Mi pedido">
-  <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="font-size:26px">Mi pedido</h3><button class="close" id="drawerClose" type="button" aria-label="Cerrar">✕</button></div>
+  <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="font-size:26px">Mi pedido <span id="drawerN" style="font-size:15px;color:var(--muted);font-family:var(--body,system-ui)"></span></h3><button class="close" id="drawerClose" type="button" aria-label="Cerrar">✕</button></div>
   <div class="items" id="items"></div>
   <div style="display:grid;gap:10px">
-    <div class="envio" id="envio"></div><div id="upWrap" hidden><p class="eyebrow" style="margin:0 0 8px">Completa tu look</p><div class="rel" id="up"></div></div><div class="total"><span>Total</span><span class="price" id="total"></span></div>
-    <label for="orderText" class="note">Este es el mensaje de tu pedido:</label>
-    <textarea id="orderText" class="order-text" readonly></textarea>
+    <div class="envio" id="envio"></div><div class="total"><span>Total</span><span class="price" id="total"></span></div>
+    <textarea id="orderText" class="order-text" readonly hidden aria-hidden="true"></textarea>
     <a class="btn wa" id="waBtn" href="https://wa.me/19294888365" target="_blank" rel="noopener" style="justify-content:center">Pedir por WhatsApp 💬</a>
     <a class="btn ghost" id="sendBtn" href="https://ig.me/m/midnightsaints1" target="_blank" rel="noopener" style="justify-content:center">Pedir por Instagram DM 📩</a>
-    <p class="note" style="text-align:center;margin:0">Por WhatsApp el mensaje ya va escrito: solo toca enviar. Por Instagram se copia solo: pégalo en el chat. Te confirmamos tallas, total y cómo pagar (Nequi o transferencia).</p>
+    <p class="note" style="text-align:center;margin:0">Tu pedido queda guardado aunque cierres la página. Por WhatsApp el mensaje va escrito: solo toca enviar. Por Instagram se copia solo: pégalo en el chat. Te confirmamos tallas, total y cómo pagar (Nequi o transferencia).</p>
+    <div id="upWrap" hidden><p class="eyebrow" style="margin:6px 0 8px">Completa tu look</p><div class="rel" id="up"></div></div>
   </div>
 </aside>
 <div class="toast" id="toast" hidden></div>
@@ -530,13 +530,13 @@ function sugerir(){const w=$("#upWrap");if(!carrito.length){w.hidden=true;return
   const want=[...new Set(cats.flatMap(c=>COMP[c]||[]))].filter(c=>!cats.includes(c));
   const out=[];want.forEach(c=>{const m=PRODUCTS.filter(p=>p.cat===c&&!p.agotado&&!ids.includes(p.id)&&!out.includes(p));if(m.length&&out.length<4)out.push(m[Math.floor(Math.random()*m.length)])});
   $("#up").innerHTML=out.map(card).join("");w.hidden=!out.length}
-function pintarCarrito(){pintarEnvio();sugerir();$("#sendBtn").hidden=!carrito.length;
+function pintarCarrito(){pintarEnvio();{const dn=$("#drawerN");if(dn)dn.textContent=carrito.length?`(${carrito.length} ${carrito.length===1?"producto":"productos"})`:""}sugerir();$("#sendBtn").hidden=!carrito.length;
   {const c=$("#cartCount");if(c.textContent!=String(carrito.length)){c.textContent=carrito.length;c.classList.remove("pop");void c.offsetWidth;c.classList.add("pop")}}
-  $("#items").innerHTML=carrito.length?carrito.map((it,i)=>{const p=PRODUCTS.find(x=>x.id===it.id);return `<div class="line-item"><img src="${p.imgs[0]}" alt=""><div><div style="font-weight:600">${p.name}</div><small>Talla ${it.talla} · ${p.price?fmt(p.price):"precio por DM"}</small></div><button type="button" data-del="${i}">Quitar</button></div>`}).join(""):`<p class="note" style="padding-block:20px">Tu pedido está vacío. Toca un producto y elige tu talla.</p>`;
+  $("#items").innerHTML=carrito.length?carrito.map((it,i)=>{const p=PRODUCTS.find(x=>x.id===it.id);return `<div class="line-item"><img src="${mini(p.imgs[0])}" alt=""><div style="min-width:0"><div class="li-b">${p.brand}</div><div class="li-n">${p.name}</div><small>Talla ${it.talla}</small><div class="li-p">${p.price?fmt(p.price):"Precio por DM"}</div></div><button type="button" data-del="${i}" aria-label="Quitar ${p.name}">✕</button></div>`}).join(""):`<p class="note" style="padding-block:20px">Tu pedido está vacío. Toca un producto y elige tu talla.</p>`;
   const conPrecio=carrito.map(it=>PRODUCTS.find(p=>p.id===it.id)).filter(p=>p.price);
   const suma=conPrecio.reduce((a,p)=>a+p.price,0), sinPrecio=carrito.length-conPrecio.length;
   $("#total").textContent=carrito.length?(fmt(suma)+(sinPrecio?` + ${sinPrecio} por confirmar`:"")):"—";
-  $("#orderText").value=carrito.length?("Hola Midnight Saints 👋 Quiero hacer este pedido:\n"+carrito.map(it=>{const p=PRODUCTS.find(x=>x.id===it.id);return `• ${p.name} — talla ${it.talla} — ${p.price?fmt(p.price):"precio por confirmar"}`}).join("\n")+`\nTotal: ${$("#total").textContent}\nEnvío: ${prendas()>=2?"gratis (2 o más prendas)":"por cotizar"}\nCiudad de envío: `):"";
+  $("#orderText").value=carrito.length?("Hola Midnight Saints 👋 Quiero hacer este pedido:\n"+carrito.map(it=>{const p=PRODUCTS.find(x=>x.id===it.id);return `• ${p.name} — talla ${it.talla} — ${p.price?fmt(p.price):"precio por confirmar"}`}).join("\n")+`\nTotal: ${$("#total").textContent}\nEnvío: ${$("#envio").classList.contains("ok")?"gratis":"por cotizar"}\nCiudad de envío: `):"";
 }
 document.addEventListener("click",e=>{
   const fv=e.target.closest("[data-fav]"); if(fv){e.preventDefault();toggleFav(fv.dataset.fav);return}
