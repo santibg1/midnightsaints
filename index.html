@@ -2,7 +2,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap"></noscript>
 <style>
 /* Layout: tienda nocturna — barra de anuncio, cabecera fija, portada, categorías, carrusel, catálogo en cuadrícula, pedido por DM */
 :root{
@@ -551,7 +551,8 @@ document.addEventListener("click",e=>{
 $("#track").addEventListener("scroll",()=>{const tr=$("#track");const i=Math.round(tr.scrollLeft/Math.max(1,tr.clientWidth));if(i!==fotoI&&actual)marcarFoto(i)},{passive:true});
 $("#prevFoto").onclick=()=>irFoto(fotoI-1);$("#nextFoto").onclick=()=>irFoto(fotoI+1);
 document.addEventListener("keydown",e=>{if($("#sheet").hidden||!actual)return;if(e.key==="ArrowRight")irFoto(fotoI+1);if(e.key==="ArrowLeft")irFoto(fotoI-1)});
-const cerrarSheet=()=>{$("#sheet").hidden=true;try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}};
+document.addEventListener("error",e=>{const im=e.target;if(!im||im.tagName!=="IMG"||!im.src||im.src.startsWith("data:"))return;const n=+(im.dataset.re||0);if(n>=2){im.style.opacity=".15";return}im.dataset.re=n+1;const u=im.src.split("#")[0];setTimeout(()=>{im.src=u+(u.includes("?")?"&":"?")+"r="+Date.now()},1200*(n+1))},true);
+const cerrarSheet=()=>{$("#sheet").hidden=true;try{$("#track").querySelectorAll("video").forEach(v=>{v.pause();v.removeAttribute("src");v.load()});$("#track").innerHTML="";$("#thumbs").innerHTML=""}catch(e){}try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}};
 $("#sheetClose").onclick=cerrarSheet;
 $("#guiaBtn").onclick=()=>{$("#guia").hidden=false;$("#guiaClose").focus()};$("#guiaClose").onclick=()=>$("#guia").hidden=true;$("#guia").addEventListener("click",e=>{if(e.target.id==="guia")$("#guia").hidden=true});
 $("#buyWa").addEventListener("click",e=>{if(actual.agotado){e.preventDefault();aviso("Este producto está agotado");return}if(!talla){e.preventDefault();aviso("Elige tu talla primero");return}
@@ -561,10 +562,10 @@ $("#shareBtn").onclick=async()=>{const url=location.href.split("#")[0]+"#p="+enc
   try{await navigator.clipboard.writeText(url);aviso("Link copiado ✅")}catch(e){aviso(url)}};
 $("#q").addEventListener("input",e=>{q=e.target.value.trim();pintar()});
 $("#sheet").addEventListener("click",e=>{if(e.target.id==="sheet")cerrarSheet()});
-$("#addBtn").onclick=()=>{if(actual.agotado){aviso("Este producto está agotado");return}if(!talla){aviso("Elige tu talla primero");return}carrito.push({id:actual.id,talla});guardar();pintarCarrito();$("#sheet").hidden=true;aviso("Agregado a tu pedido")};
+$("#addBtn").onclick=()=>{if(actual.agotado){aviso("Este producto está agotado");return}if(!talla){aviso("Elige tu talla primero");return}carrito.push({id:actual.id,talla});guardar();pintarCarrito();cerrarSheet();aviso("Agregado a tu pedido")};
 $("#cartBtn").onclick=()=>{$("#drawer").hidden=false;$("#drawerClose").focus()};
 $("#drawerClose").onclick=()=>$("#drawer").hidden=true;
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){$("#guia").hidden=true;$("#sheet").hidden=true;$("#drawer").hidden=true}});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){$("#guia").hidden=true;cerrarSheet();$("#drawer").hidden=true}});
 $("#sendBtn").addEventListener("click",()=>{const t=$("#orderText");if(!t.value)return;
   try{navigator.clipboard.writeText(t.value).then(()=>aviso("Pedido copiado ✅ Pégalo en el chat"),()=>aviso("Copia el mensaje de arriba y pégalo en el chat"))}catch(e){aviso("Copia el mensaje de arriba y pégalo en el chat")}});
 $("#waBtn").addEventListener("click",e=>{const t=$("#orderText");if(!t.value){e.preventDefault();aviso("Agrega algo a tu pedido primero");return}
